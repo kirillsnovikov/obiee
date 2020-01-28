@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
+import WaterChart from './components/molecules/WaterChart';
 import './App.css';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         >
           Learn React
         </a>
+        <WaterChart />
       </header>
     </div>
   );
