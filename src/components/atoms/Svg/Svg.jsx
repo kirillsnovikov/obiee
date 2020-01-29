@@ -2,7 +2,8 @@ import React from 'react';
 
 const Svg = function(props) {
   console.log(props);
-  return <svg viewBox={`0 0 100 100`}>{props.inner}</svg>;
+  const viewBox = [0, 0, 100, 100];
+  return <svg viewBox={viewBox}>{props.inner}</svg>;
 };
 
 export default Svg;
