@@ -1,0 +1,1 @@
+export { SvgFigure } from './SvgFigure';

@@ -1,2 +1,1 @@
-import WaterChart from './WaterChart.jsx';
-export default WaterChart;
+export { WaterChart } from './WaterChart.jsx';

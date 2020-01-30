@@ -2,49 +2,43 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import logo from './logo.svg';
-import WaterChart from '../../components/molecules/WaterChart';
-import './App.css';
+import Dashboard from '../Dashboard';
+import { User } from '../../components/molecules/User';
+import { Page } from '../../components/molecules/Page';
+import { setYear } from '../../actions/PageActions';
+import style from './App.css';
 
 class App extends React.Component {
   render() {
-    const { name, surname, age } = this.props.user;
-    const { year, photos } = this.props.page;
+    const { user, page, setYearAction } = this.props;
 
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+      <div className={style.App}>
+        <header className={style['App-header']}>
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
-          <p>
-            Привет из App, {name} {surname}!
-          </p>
-          <p>{photos}</p>
-          <p>{year}</p>
-          <p>Тебе уже {age} ?</p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          <WaterChart />
+          <User name={user.name} />
+          <Page photos={page.photos} year={page.year} setYear={setYearAction} />
         </header>
+        <Dashboard />
       </div>
     );
   }
 }
 
 const mapStateToProps = store => {
-  console.log(store); // посмотрим, что же у нас в store?
+  // console.log(store); // посмотрим, что же у нас в store?
   return {
     user: store.user,
     page: store.page
   };
 };
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => {
+  return {
+    setYearAction: year => dispatch(setYear(year)) // [1]
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
