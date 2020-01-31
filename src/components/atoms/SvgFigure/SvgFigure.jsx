@@ -1,17 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const figures = {
-  circle: 'circle',
-  line: 'line',
-  rect: 'rect'
-};
 export class SvgFigure extends React.Component {
   render() {
-    const { figure, attrs } = this.props;
-    console.log(attrs);
-    const Figure = figures[figure];
-    return <Figure {...attrs}></Figure>;
+    const { figure, attrs, children } = this.props;
+    const Figure = figure;
+    return <Figure {...attrs}>{children}</Figure>;
   }
 }
 

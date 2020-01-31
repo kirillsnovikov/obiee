@@ -1,2 +1,1 @@
-import Svg from './Svg.jsx';
-export default Svg;
+export { Svg } from './Svg.jsx';

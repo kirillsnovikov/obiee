@@ -5,17 +5,21 @@ import style from './style.scss';
 
 class Dashboard extends React.Component {
   render() {
-    // const { cards } = this.props;
-    console.log('style', style);
+    console.log(style);
     const cards = this.props.cards.items.map((card, i) => (
       <Card data={card} key={card.id + i} />
     ));
-    return <section className={style.test}>{cards}</section>;
+    return (
+      <section className={style.dashboard}>
+        <div className={style.cards}>{cards}</div>
+        <div className={style.funnel}></div>
+        <div className={style.table}></div>
+      </section>
+    );
   }
 }
 
 const mapStateToProps = store => {
-  console.log('store', store);
   return {
     cards: store.cards,
     funnel: store.funnel,

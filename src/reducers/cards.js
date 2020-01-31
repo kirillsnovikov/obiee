@@ -4,7 +4,7 @@ import { random } from '../helpers/helper';
 const initialState = {
   items: [{ id: 1 }, { id: 2 }, { id: 3 }]
 };
-initialState.items.forEach(item => (item.percentage = random(0, 100)));
+initialState.items.forEach(item => (item.pct = random(0, 100)));
 
 export function cardsReducer(state = initialState, action) {
   switch (action.type) {

@@ -1,149 +1,67 @@
 export default class MyWaterChart {
   constructor(percentage, width) {
-    this._percentage = percentage;
+    this._pct = percentage;
     this._size = Math.round(width);
-    this._chartSize = Math.round((width * 90) / 100);
+    this._chartBGSize = Math.round((this._size * 90) / 100);
+    this._waterChartSize = Math.round((this._size * 80) / 100);
+  }
+
+  get size() {
+    return this._size & 1 ? this._size - 1 : this._size;
+  }
+  get fontSize() {
+    return Math.round((this._chartSize * 15) / 100);
+  }
+  get chartCenterCoords() {
+    return this.size / 2;
+  }
+  get borderRadius() {
+    return (this.size - 2) / 2;
+  }
+  get BGRadius() {
+    return this._chartBGSize / 2;
+  }
+  get chartRadius() {
+    return this._waterChartSize / 2;
+  }
+  get waveWidth() {
+    return (this._waterChartSize * 2) / this.options.waveCnt;
+  }
+  get wavePath() {
+    let width = this._waterChartSize * 2;
+    let bezierX = this.waveWidth / 4;
+    let startX = this.chartCenterCoords - this.chartRadius;
+    let startY = this.chartCenterCoords + this.chartRadius;
+    let bezierY = Math.abs(Math.abs(this._pct / 50 - 1) - 1) * 12.5;
+    let dy = startY - (this._waterChartSize * this._pct) / 100;
+    let path = `M ${startX} ${dy}`;
+
+    for (let i = 1; i <= this.options.waveCnt; i++) {
+      let dx1 = this.waveWidth * i + startX;
+      let dx = dx1 - this.waveWidth;
+
+      let qx = dx + bezierX;
+      let qy = dy - bezierY;
+      let tx = dx1 - this.waveWidth / 2;
+      let ty = dy;
+      path += ` Q ${qx} ${qy}, ${tx} ${ty} T ${dx1} ${dy}`;
+    }
+    path += ` L ${startX + width} ${startY}, ${startX} ${startY} Z`;
+    return path;
+  }
+  get color() {
+    return this.options.percentColors.find(grade => {
+      return this._pct <= grade.pct;
+    }).color;
   }
 
   options = {
-    borderWidth: 1
-  }
-
-  this.options['fontSize'] = Math.round((this._chartSize * 15) / 100);
-  this.options['radius'] = options.chartSize / 2;
-  this.options['chartCenterCoords'] = options.size / 2;
-  this.options['chartBGSize'] = Math.round((options.chartSize * 90) / 100);
-  this.options['chartBGRadius'] = options.chartBGSize / 2;
-  this.options['waterChartSize'] = Math.round((options.chartSize * 80) / 100);
-  this.options['waterChartRadius'] = options.waterChartSize / 2;
-}
-
-
-import { createSVG, getCathet, random } from './../helpers/helper';
-
-export function waterChart(percentage, animate) {
-  if (percentage === undefined) return;
-  animate = animate ? true : false;
-  let chart = $('.water-chart');
-  let chartSize = Math.round((chart.width() * 90) / 100);
-  const options = {
-    size: Math.round(chart.width()),
-    chartSize: chartSize,
-    borderWidth: 1
+    borderWidth: 0.3,
+    percentColors: [
+      { pct: 20, color: '#EC232F' },
+      { pct: 70, color: '#FECB2F' },
+      { pct: 100, color: '#49AE48' }
+    ],
+    waveCnt: 2
   };
-  options.fontSize = Math.round((options.chartSize * 15) / 100);
-  options.radius = options.chartSize / 2;
-  options.chartCenterCoords = options.size / 2;
-  options.chartBGSize = Math.round((options.chartSize * 90) / 100);
-  options.chartBGRadius = options.chartBGSize / 2;
-  options.waterChartSize = Math.round((options.chartSize * 80) / 100);
-  options.waterChartRadius = options.waterChartSize / 2;
-
-  let svg = createSVG('svg', {
-    width: options.size,
-    height: options.size
-  });
-
-  let border = createSVG('circle', {
-    fill: 'none',
-    stroke: '#7abc2b',
-    r: options.radius,
-    cx: options.chartCenterCoords,
-    cy: options.chartCenterCoords,
-    'stroke-width': options.borderWidth
-  });
-
-  let chartBG = createSVG('circle', {
-    fill: '#eaeaea',
-    r: options.chartBGRadius,
-    cx: options.chartCenterCoords,
-    cy: options.chartCenterCoords
-  });
-
-  let waterChart;
-  if (percentage >= 100) {
-    waterChart = createSVG('circle', {
-      fill: '#7abc2b',
-      r: options.waterChartRadius,
-      cx: options.chartCenterCoords,
-      cy: options.chartCenterCoords
-    });
-  } else {
-    options.isLargeAcr = percentage > 50 ? 1 : 0;
-    options.startCoords = (options.size - options.waterChartSize) / 2;
-    options.dy = parseFloat(
-      (
-        options.size -
-        options.startCoords -
-        (options.waterChartSize * percentage) / 100
-      ).toFixed(3)
-    );
-
-    options.dx = getCathet(
-      options.waterChartRadius - options.dy + options.startCoords,
-      options.waterChartRadius
-    );
-
-    options.dx1 = options.chartCenterCoords - options.dx;
-    options.dx2 = options.chartCenterCoords + options.dx;
-
-    let bezier = options.dx1 + options.dx / 2;
-
-    waterChart = createSVG('path', {
-      d: `M${options.dx1} ${options.dy} Q${bezier} ${random(
-        options.dy - 10,
-        options.dy + 10
-      )} ${options.chartCenterCoords} ${options.dy} T${options.dx2} ${
-        options.dy
-      } A ${options.waterChartRadius} ${options.waterChartRadius} 0 ${
-        options.isLargeAcr
-      } 1 ${options.dx1} ${options.dy}`,
-      fill: 'url(#grad1)'
-    });
-  }
-
-  let text = createSVG('text', {
-    class: 'chart-percentage',
-    x: '50%',
-    y: options.chartCenterCoords + options.fontSize / 4,
-    style: `font: bold ${options.fontSize}px Arial;fill: #5c5c5c`
-  });
-  let value = createSVG('tspan', {
-    'text-anchor': 'middle'
-  });
-  value.textContent = `${percentage}%`;
-  text.appendChild(value);
-
-  svg.appendChild(gradient());
-  svg.appendChild(border);
-  svg.appendChild(chartBG);
-  svg.appendChild(waterChart);
-  svg.appendChild(text);
-
-  $('body').append(chart.append(svg));
-
-  function gradient() {
-    let defs = createSVG('defs');
-    let linearGradient = createSVG('linearGradient', {
-      id: 'grad1',
-      x1: '0%',
-      y1: '0%',
-      x2: '0%',
-      y2: '100%'
-    });
-    let stop1 = createSVG('stop', {
-      offset: '0%',
-      style: 'stop-color:rgb(128,188,43);stop-opacity:1'
-    });
-    let stop2 = createSVG('stop', {
-      offset: '100%',
-      style: 'stop-color:rgb(189,218,87);stop-opacity:1'
-    });
-    linearGradient.appendChild(stop1);
-    linearGradient.appendChild(stop2);
-    defs.appendChild(linearGradient);
-    return defs;
-  }
 }
-
-export function waterChart2(percentage) {}

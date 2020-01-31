@@ -14,6 +14,7 @@ class App extends React.Component {
 
     return (
       <div className={style.App}>
+        <Dashboard />
         <header className={style['App-header']}>
           <p>
             Edit <code>src/App.js</code> and save to reload.
@@ -21,7 +22,6 @@ class App extends React.Component {
           <User name={user.name} />
           <Page photos={page.photos} year={page.year} setYear={setYearAction} />
         </header>
-        <Dashboard />
       </div>
     );
   }
