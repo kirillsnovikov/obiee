@@ -2,14 +2,14 @@ import React from 'react';
 import { Svg } from './../../atoms/Svg';
 import { SvgFigure } from '../../atoms/SvgFigure';
 import PropTypes from 'prop-types';
-import MyWaterChart from './myWaterChart';
+import { Water } from '../../../lib/charts';
 import style from './style.scss';
 
 export class WaterChart extends React.Component {
   render() {
     const { width, pct, id } = this.props;
     const waveId = `clipWavefillgauge${id}`;
-    const chart = new MyWaterChart(pct, width);
+    const chart = new Water(pct, width);
     return (
       <Svg width={chart.size} height={chart.size}>
         <g>

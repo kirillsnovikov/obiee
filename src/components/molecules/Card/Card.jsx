@@ -8,7 +8,8 @@ export class Card extends React.Component {
     const { data } = this.props;
     return (
       <div className={style.card}>
-        {data.id}
+        {data.fact}
+        {data.pct}
         <WaterChart width={100} pct={data.pct} id={data.id} />
       </div>
     );

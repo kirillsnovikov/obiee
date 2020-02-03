@@ -1,4 +1,4 @@
-export default class MyWaterChart {
+export class Water {
   constructor(percentage, width) {
     this._pct = percentage;
     this._size = Math.round(width);

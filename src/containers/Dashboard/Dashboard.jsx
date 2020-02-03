@@ -2,11 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Card } from '../../components/molecules/Card';
 import style from './style.scss';
+import { loadCards } from '../../actions/DashboardActions';
 
 class Dashboard extends React.Component {
+  componentDidMount() {
+    const { loadCards } = this.props;
+    loadCards();
+  }
   render() {
-    console.log(style);
-    const cards = this.props.cards.items.map((card, i) => (
+    const cards = this.props.cards.cards.map((card, i) => (
       <Card data={card} key={card.id + i} />
     ));
     return (
@@ -14,6 +18,7 @@ class Dashboard extends React.Component {
         <div className={style.cards}>{cards}</div>
         <div className={style.funnel}></div>
         <div className={style.table}></div>
+        <div onClick={this.props.loadCards}>reload</div>
       </section>
     );
   }
@@ -27,4 +32,10 @@ const mapStateToProps = store => {
   };
 };
 
-export default connect(mapStateToProps)(Dashboard);
+const mapDispatchToProps = dispatch => {
+  return {
+    loadCards: () => dispatch(loadCards())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
