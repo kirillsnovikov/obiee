@@ -23,7 +23,7 @@ export function cardsReducer(state = initialState, action) {
       return { ...state, loading: true };
 
     case SET_CARDS_SUCCESS:
-      console.log(state, action);
+      // console.log(state, action);
       return {
         ...state,
         loading: false,

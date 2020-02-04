@@ -1,0 +1,37 @@
+$btn-color: #001fa7;
+$btn-border: 1px solid $btn-color;
+$btn-border-radius: 2px;
+
+.button {
+  padding: 0.5em 1em;
+  cursor: pointer;
+  display: inline-block;
+  border-radius: $btn-border-radius;
+  color: $btn-color;
+  border: $btn-border;
+
+  &_type {
+    &_empty {
+      &:hover {
+        // border: none;
+        background: $btn-color;
+        color: #fff;
+      }
+    }
+    &_full {
+      color: #fff;
+      background: $btn-color;
+      box-sizing: border-box;
+      &:hover {
+        border: $btn-border;
+        background: none;
+        color: $btn-color;
+      }
+    }
+  }
+}
+
+.link {
+  text-decoration: none;
+  // color: inherit;
+}

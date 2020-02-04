@@ -16,28 +16,23 @@ export function loadCards() {
   return dispatch => {
     dispatch(loadCardsStarted());
 
-    // const promise = new Promise(resolve => {
-    let res = [];
-    for (let i = 0; i < 3; i++) {
-      let card = {
-        id: i + 1,
-        pct: random(0, 100),
-        plan: random(40, 60),
-        fact: random(70, 100),
-        pipe: random(0, 30),
-        confirm: random(0, 20)
-      };
-      res.push(card);
-    }
-    console.log('ddd', res);
-    // setTimeout(() => {
-    // resolve(res);
-    // }, 1000);
-    // });
+    setTimeout(() => {
+      let res = [];
+      for (let i = 0; i < 3; i++) {
+        let card = {
+          id: i + 1,
+          title: 'Прирост портфеля под управлением',
+          pct: random(0, 100),
+          plan: random(40, 60),
+          fact: random(70, 100),
+          pipe: random(5, 30),
+          confirm: random(5, 20)
+        };
+        res.push(card);
+      }
 
-    // promise.then(res => {
-    dispatch(loadCardsSuccess(res));
-    // });
+      dispatch(loadCardsSuccess(res));
+    }, 500);
   };
 }
 

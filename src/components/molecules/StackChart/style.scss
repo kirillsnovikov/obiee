@@ -1,0 +1,13 @@
+.stackChart {
+  display: flex;
+
+  &__labels {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  &__item {
+    display: flex;
+    align-items: center;
+  }
+}

@@ -11,7 +11,7 @@ class Dashboard extends React.Component {
   }
   render() {
     const cards = this.props.cards.cards.map((card, i) => (
-      <Card data={card} key={card.id + i} />
+      <Card className={style.cards__card} data={card} key={card.id + i} />
     ));
     return (
       <section className={style.dashboard}>

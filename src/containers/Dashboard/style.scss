@@ -12,6 +12,12 @@
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
+  &__card {
+    margin-right: 10px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 }
 
 .funnel {
