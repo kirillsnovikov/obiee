@@ -4,13 +4,12 @@ export const SET_CARDS = 'SET_CARDS';
 export const SET_CARDS_SUCCESS = 'SET_CARDS_SUCCESS';
 export const SET_CARDS_FIALURE = 'SET_CARDS_FIALURE';
 export const SET_CARDS_STARTED = 'SET_CARDS_STARTED';
-
-// export function setCards(card) {
-//   return {
-//     type: SET_CARDS,
-//     payload: card
-//   };
-// }
+export const SET_FUNNEL_SUCCESS = 'SET_FUNNEL_SUCCESS';
+export const SET_FUNNEL_FIALURE = 'SET_FUNNEL_FIALURE';
+export const SET_FUNNEL_STARTED = 'SET_FUNNEL_STARTED';
+export const SET_TABLE_SUCCESS = 'SET_TABLE_SUCCESS';
+export const SET_TABLE_FIALURE = 'SET_TABLE_FIALURE';
+export const SET_TABLE_STARTED = 'SET_TABLE_STARTED';
 
 export function loadCards() {
   return dispatch => {
@@ -32,7 +31,30 @@ export function loadCards() {
       }
 
       dispatch(loadCardsSuccess(res));
-    }, 500);
+    }, 1000);
+  };
+}
+
+export function loadFunnel() {
+  return dispatch => {
+    dispatch(loadFunnelStarted());
+
+    setTimeout(() => {
+      let funnel = [];
+      for (let i = 0; i < 3; i++) {
+        let layer = {
+          order: i + 1,
+          name: `NAME_${i + 1}`,
+          data: random(0, 100),
+          color: `#${random(0, 255).toString(16)}${random(0, 255).toString(
+            16
+          )}${random(0, 255).toString(16)}`
+        };
+        funnel.push(layer);
+      }
+
+      dispatch(loadFunnelSuccess(funnel));
+    }, 2200);
   };
 }
 
@@ -43,4 +65,13 @@ const loadCardsSuccess = cards => ({
 
 const loadCardsStarted = () => ({
   type: SET_CARDS_STARTED
+});
+
+const loadFunnelSuccess = cards => ({
+  type: SET_FUNNEL_SUCCESS,
+  payload: cards
+});
+
+const loadFunnelStarted = () => ({
+  type: SET_FUNNEL_STARTED
 });

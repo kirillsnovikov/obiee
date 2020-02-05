@@ -1,0 +1,61 @@
+$size: 50px;
+$top: 2px;
+$color: #444;
+$item: 1;
+$delay: 0.1s;
+$count: 13;
+$step: 30deg;
+
+$transform: $size / 2;
+$left: $transform - $top;
+$width: $top * 2;
+$height: $width * 2;
+
+.spinnerLayout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.lds-spinner {
+  color: official;
+  display: inline-block;
+  position: relative;
+  width: $size;
+  height: $size;
+}
+.lds-spinner div {
+  transform-origin: $transform $transform;
+  animation: lds-spinner 1.2s linear infinite;
+}
+.lds-spinner div:after {
+  content: ' ';
+  display: block;
+  position: absolute;
+  top: $top;
+  left: $left;
+  width: $width;
+  height: $height;
+  border-radius: 20%;
+  background: $color;
+}
+
+@for $item from 1 to $count {
+  $time: $delay * $item - $count / 10;
+  $deg: 0deg + ($item - 1) * $step;
+  .lds-spinner div:nth-child(#{$item}) {
+    transform: rotate($deg);
+    animation-delay: $time;
+  }
+}
+
+@keyframes lds-spinner {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

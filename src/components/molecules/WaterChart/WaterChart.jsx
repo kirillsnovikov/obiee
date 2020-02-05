@@ -33,9 +33,20 @@ export class WaterChart extends React.Component {
                     type: 'translate',
                     from: '0 0',
                     to: `-${chart.waveWidth} 0`,
-                    begin: '0s',
+                    begin: '1s',
                     dur: '2s',
                     repeatCount: 'indefinite'
+                  }}
+                />
+                <SvgFigure
+                  figure={'animateTransform'}
+                  attrs={{
+                    attributeName: 'transform',
+                    type: 'translate',
+                    from: `0 ${chart.waveHeight}`,
+                    to: `0 0`,
+                    begin: '0s',
+                    dur: '1s'
                   }}
                 />
               </SvgFigure>
@@ -56,8 +67,8 @@ export class WaterChart extends React.Component {
           />
           <SvgFigure
             figure={'circle'}
+            className={style.bg}
             attrs={{
-              className: style.bg,
               cx: chart.chartCenterCoords,
               cy: chart.chartCenterCoords,
               r: chart.BGRadius

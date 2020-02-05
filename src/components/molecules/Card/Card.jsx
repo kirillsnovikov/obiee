@@ -30,7 +30,7 @@ export class Card extends React.Component {
         }
       ],
       height: 100,
-      pointSize: 5
+      pointSize: 7
     };
     return (
       <div className={`${style.card} ${className}`}>

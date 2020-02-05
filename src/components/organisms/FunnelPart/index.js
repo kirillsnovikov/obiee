@@ -1,0 +1,1 @@
+export { FunnelPart } from './FunnelPart';

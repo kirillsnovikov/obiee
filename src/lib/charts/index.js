@@ -1,3 +1,3 @@
 export { Water } from './water';
-export { Funnel } from './funnel';
+export { FunnelVertical } from './funnel';
 export { StackPrcColumn } from './column';

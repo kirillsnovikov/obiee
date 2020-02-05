@@ -4,15 +4,12 @@ import {
   SET_CARDS_SUCCESS,
   SET_CARDS_FIALURE
 } from '../actions/DashboardActions';
-// import { random } from '../helpers/helper';
 
 const initialState = {
-  // items: [{ id: 1 }, { id: 2 }, { id: 3 }]
   loading: false,
   cards: [],
   error: null
 };
-// initialState.cards.forEach(item => (item.pct = random(0, 100)));
 
 export function cardsReducer(state = initialState, action) {
   switch (action.type) {

@@ -1,0 +1,38 @@
+.funnel-part {
+  display: grid;
+  grid-template-areas:
+    'top top'
+    'body-funnel body-description'
+    'bottom bottom';
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 50px 1fr 50px;
+  padding: 25px 0 40px 30px;
+}
+
+.top {
+  grid-area: top;
+  font-weight: bold;
+}
+
+.bottom {
+  grid-area: bottom;
+  display: flex;
+  align-items: center;
+}
+
+.body-funnel {
+  grid-area: body-funnel;
+}
+
+.body-description {
+  grid-area: body-description;
+}
+
+.label {
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  &__value {
+    margin-left: 10px;
+  }
+}

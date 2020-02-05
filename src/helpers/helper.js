@@ -25,6 +25,11 @@ export function getCathet(cathet, hypotenuse) {
   );
 }
 
+export function getCathetByAngleAndNearCathet(cathet, angle) {
+  var rad = (angle * Math.PI) / 180;
+  return parseFloat((Math.tan(rad) * cathet).toFixed(3));
+}
+
 export function random(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);

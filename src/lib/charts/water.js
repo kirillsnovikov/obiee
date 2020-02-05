@@ -27,13 +27,16 @@ export class Water {
   get waveWidth() {
     return (this._waterChartSize * 2) / this.options.waveCnt;
   }
+  get waveHeight() {
+    return (this._waterChartSize * this._pct) / 100;
+  }
   get wavePath() {
     let width = this._waterChartSize * 2;
     let bezierX = this.waveWidth / 4;
     let startX = this.chartCenterCoords - this.chartRadius;
     let startY = this.chartCenterCoords + this.chartRadius;
     let bezierY = Math.abs(Math.abs(this._pct / 50 - 1) - 1) * 12.5;
-    let dy = startY - (this._waterChartSize * this._pct) / 100;
+    let dy = startY - this.waveHeight;
     let path = `M ${startX} ${dy}`;
 
     for (let i = 1; i <= this.options.waveCnt; i++) {
