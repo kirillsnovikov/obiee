@@ -42,10 +42,10 @@ const Cards = props => {
   return props.cards.loading ? (
     <Spinner />
   ) : (
-    props.cards.cards.map((card, i) => (
-      <Card className={style.cards__card} data={card} key={card.id + i} />
-    ))
-  );
+      props.cards.cards.map((card, i) => (
+        <Card className={style.cards__card} data={card} key={card.id + i} />
+      ))
+    );
 };
 
 const TablePart = props => {

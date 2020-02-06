@@ -15,7 +15,7 @@ export class FunnelVertical {
     let dotRadius = this.dot / 2;
     let layerHeight = this.layers.length
       ? (this.height - (this.layers.length - 1) * this.options.gap) /
-        this.layers.length
+      this.layers.length
       : 0;
     let fontSize = layerHeight / 3.6;
     this.layers.forEach((layer, i) => {
@@ -26,7 +26,13 @@ export class FunnelVertical {
       let path = `M ${startX} ${startY} L ${x1} ${startY} L ${x2} ${endY} L ${startX} ${endY} Z`;
       let attrs = {
         path: {
-          d: path,
+          d: path
+        },
+        rect: {
+          x: startX,
+          y: startY,
+          width: x1,
+          height: layerHeight,
           fill: this.options.layerColors[i]
         },
         text: {

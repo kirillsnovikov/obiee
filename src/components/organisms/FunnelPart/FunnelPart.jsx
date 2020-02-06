@@ -30,22 +30,24 @@ export class FunnelPart extends React.Component {
     return funnel.loading ? (
       <Spinner />
     ) : (
-      <div className={style['funnel-part']}>
-        <div className={style.top}>Воронка продаж</div>
-        <div className={style['body-funnel']}>
-          <Funnel
-            data={funnelChart.attrs}
-            width={config.width}
-            height={config.height}
-          />
+        <div className={style['funnel-part']}>
+          <div className={style.top}>{funnel.header}</div>
+          <div className={style['body-funnel']}>
+            <Funnel
+              data={funnelChart.attrs}
+              width={config.width}
+              height={config.height}
+            />
+          </div>
+          <div className={style['body-description']}>
+            {funnel.body.title}
+          </div>
+          <div className={style.bottom}>
+            {labels}
+            <div onClick={getFunnelInThings}>reloadFunnel</div>
+          </div>
         </div>
-        <div className={style['body-description']}></div>
-        <div className={style.bottom}>
-          {labels}
-          <div onClick={getFunnelInThings}>reloadFunnel</div>
-        </div>
-      </div>
-    );
+      );
   }
 }
 
