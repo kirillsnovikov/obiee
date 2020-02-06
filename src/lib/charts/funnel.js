@@ -12,14 +12,14 @@ export class FunnelVertical {
   get attrs() {
     let paths = [];
     let startX = 0;
-    let gap = this.height / 20;
     let dotRadius = this.dot / 2;
     let layerHeight = this.layers.length
-      ? (this.height - (this.layers.length - 1) * gap) / this.layers.length
+      ? (this.height - (this.layers.length - 1) * this.options.gap) /
+        this.layers.length
       : 0;
     let fontSize = layerHeight / 3.6;
     this.layers.forEach((layer, i) => {
-      let startY = i * layerHeight + i * gap;
+      let startY = i * layerHeight + i * this.options.gap;
       let x1 = this.width - getCathetByAngleAndNearCathet(startY, this.angle);
       let endY = startY + layerHeight;
       let x2 = this.width - getCathetByAngleAndNearCathet(endY, this.angle);
@@ -27,24 +27,30 @@ export class FunnelVertical {
       let attrs = {
         path: {
           d: path,
-          fill: layer.color
+          fill: this.options.layerColors[i]
         },
         text: {
           y: startY + layerHeight / 2 + fontSize / 4,
           x: this.width / 10,
           fontSize: fontSize
         },
-        data: layer.data,
         label: {
           r: dotRadius,
           cy: dotRadius,
           cx: dotRadius,
-          fill: layer.color
+          fill: this.options.layerColors[i]
         },
-        name: layer.name
+        data: layer.data,
+        name: layer.name,
+        layerWidth: x1
       };
       paths.push(attrs);
     });
     return paths;
   }
+
+  options = {
+    layerColors: ['#E0E4A9', '#2340CA', '#4994F1'],
+    gap: 10
+  };
 }

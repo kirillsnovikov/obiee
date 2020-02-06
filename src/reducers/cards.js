@@ -1,5 +1,4 @@
 import {
-  SET_CARDS,
   SET_CARDS_STARTED,
   SET_CARDS_SUCCESS,
   SET_CARDS_FIALURE
@@ -13,9 +12,6 @@ const initialState = {
 
 export function cardsReducer(state = initialState, action) {
   switch (action.type) {
-    case SET_CARDS:
-      return [...state, action.payload];
-
     case SET_CARDS_STARTED:
       return { ...state, loading: true };
 

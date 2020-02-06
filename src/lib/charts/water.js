@@ -10,7 +10,7 @@ export class Water {
     return this._size & 1 ? this._size - 1 : this._size;
   }
   get fontSize() {
-    return Math.round((this._chartSize * 15) / 100);
+    return Math.round(this._size / 6.25);
   }
   get chartCenterCoords() {
     return this.size / 2;
@@ -25,13 +25,13 @@ export class Water {
     return this._waterChartSize / 2;
   }
   get waveWidth() {
-    return (this._waterChartSize * 2) / this.options.waveCnt;
+    return (this._waterChartSize * 3) / this.options.waveCnt;
   }
   get waveHeight() {
     return (this._waterChartSize * this._pct) / 100;
   }
   get wavePath() {
-    let width = this._waterChartSize * 2;
+    let width = this._waterChartSize * 6;
     let bezierX = this.waveWidth / 4;
     let startX = this.chartCenterCoords - this.chartRadius;
     let startY = this.chartCenterCoords + this.chartRadius;
@@ -39,7 +39,7 @@ export class Water {
     let dy = startY - this.waveHeight;
     let path = `M ${startX} ${dy}`;
 
-    for (let i = 1; i <= this.options.waveCnt; i++) {
+    for (let i = 1; i <= this.options.waveCnt + 2; i++) {
       let dx1 = this.waveWidth * i + startX;
       let dx = dx1 - this.waveWidth;
 

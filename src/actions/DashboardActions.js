@@ -1,12 +1,15 @@
 import { random } from '../helpers/helper';
+import BIService from '../services/BIService';
 
-export const SET_CARDS = 'SET_CARDS';
 export const SET_CARDS_SUCCESS = 'SET_CARDS_SUCCESS';
 export const SET_CARDS_FIALURE = 'SET_CARDS_FIALURE';
 export const SET_CARDS_STARTED = 'SET_CARDS_STARTED';
-export const SET_FUNNEL_SUCCESS = 'SET_FUNNEL_SUCCESS';
-export const SET_FUNNEL_FIALURE = 'SET_FUNNEL_FIALURE';
-export const SET_FUNNEL_STARTED = 'SET_FUNNEL_STARTED';
+export const GET_FUNNEL_IN_THINGS_SUCCESS = 'GET_FUNNEL_IN_THINGS_SUCCESS';
+export const GET_FUNNEL_IN_THINGS_FIALURE = 'GET_FUNNEL_IN_THINGS_FIALURE';
+export const GET_FUNNEL_IN_THINGS_STARTED = 'GET_FUNNEL_IN_THINGS_STARTED';
+export const GET_FUNNEL_IN_MLNS_SUCCESS = 'GET_FUNNEL_IN_MLNS_SUCCESS';
+export const GET_FUNNEL_IN_MLNS_FIALURE = 'GET_FUNNEL_IN_MLNS_FIALURE';
+export const GET_FUNNEL_IN_MLNS_STARTED = 'GET_FUNNEL_IN_MLNS_STARTED';
 export const SET_TABLE_SUCCESS = 'SET_TABLE_SUCCESS';
 export const SET_TABLE_FIALURE = 'SET_TABLE_FIALURE';
 export const SET_TABLE_STARTED = 'SET_TABLE_STARTED';
@@ -35,28 +38,25 @@ export function loadCards() {
   };
 }
 
-export function loadFunnel() {
+export const getFunnelInThings = () => {
   return dispatch => {
-    dispatch(loadFunnelStarted());
-
+    dispatch(getFunnelInThingsStarted());
     setTimeout(() => {
-      let funnel = [];
-      for (let i = 0; i < 3; i++) {
-        let layer = {
-          order: i + 1,
-          name: `NAME_${i + 1}`,
-          data: random(0, 100),
-          color: `#${random(0, 255).toString(16)}${random(0, 255).toString(
-            16
-          )}${random(0, 255).toString(16)}`
-        };
-        funnel.push(layer);
-      }
-
-      dispatch(loadFunnelSuccess(funnel));
-    }, 2200);
+      let data = BIService.getFunnelInThings();
+      dispatch(getFunnelInThingsSuccess(data));
+    }, 1000);
   };
-}
+};
+
+export const getFunnelInMlns = () => {
+  return dispatch => {
+    dispatch(getFunnelInMlnsStarted());
+    setTimeout(() => {
+      let data = BIService.getFunnelInMlns();
+      dispatch(getFunnelInMlnsSuccess(data));
+    }, 1000);
+  };
+};
 
 const loadCardsSuccess = cards => ({
   type: SET_CARDS_SUCCESS,
@@ -67,11 +67,20 @@ const loadCardsStarted = () => ({
   type: SET_CARDS_STARTED
 });
 
-const loadFunnelSuccess = cards => ({
-  type: SET_FUNNEL_SUCCESS,
-  payload: cards
+const getFunnelInThingsSuccess = funnel => ({
+  type: GET_FUNNEL_IN_THINGS_SUCCESS,
+  payload: funnel
 });
 
-const loadFunnelStarted = () => ({
-  type: SET_FUNNEL_STARTED
+const getFunnelInThingsStarted = () => ({
+  type: GET_FUNNEL_IN_THINGS_STARTED
+});
+
+const getFunnelInMlnsSuccess = funnel => ({
+  type: GET_FUNNEL_IN_MLNS_SUCCESS,
+  payload: funnel
+});
+
+const getFunnelInMlnsStarted = () => ({
+  type: GET_FUNNEL_IN_MLNS_STARTED
 });

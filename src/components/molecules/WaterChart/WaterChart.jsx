@@ -85,6 +85,20 @@ export class WaterChart extends React.Component {
               }}
             />
           </g>
+          <SvgFigure
+            figure={'text'}
+            className={style.text}
+            attrs={{
+              x: '50%',
+              y: '50%',
+              dy: chart.fontSize / 3,
+              fontSize: chart.fontSize
+            }}
+          >
+            <SvgFigure figure={'tspan'} attrs={{ textAnchor: 'middle' }}>
+              {`${pct}%`}
+            </SvgFigure>
+          </SvgFigure>
         </g>
       </Svg>
     );

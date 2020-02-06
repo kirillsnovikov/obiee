@@ -21,27 +21,25 @@ export class StackChart extends React.Component {
         fill: rect.fill
       };
       return (
-        <div className={style.stackChart__item} key={`${i}_${rect.data}`}>
-          {/* <div className={style.labels__item}> */}
-          <Svg height={config.pointSize} width={config.pointSize}>
-            <SvgFigure figure={'circle'} attrs={circleAttrs} />
-          </Svg>
-          <div className={style.labels__name}>{`${rect.name}:`}</div>
-          <div className={style.labels__data}>{rect.data}</div>
-          {/* </div> */}
+        <div className={style.item} key={`${i}_${rect.data}`}>
+          <div className={style.label}>
+            <div className={style.label__dot}>
+              <Svg height={config.pointSize} width={config.pointSize}>
+                <SvgFigure figure={'circle'} attrs={circleAttrs} />
+              </Svg>
+            </div>
+            <div className={style.label__name}>{`${rect.name}:`}</div>
+          </div>
+          <div className={style.value}>{rect.data}</div>
         </div>
       );
     });
     return (
       <div className={style.stackChart}>
-        <Svg
-          className={style.stackChart__chart}
-          width={chart.totalWidth}
-          height={config.height}
-        >
+        <Svg width={chart.totalWidth} height={config.height}>
           <g>{rects}</g>
         </Svg>
-        <div className={style.stackChart__labels}>{labels}</div>
+        <div className={style.labels}>{labels}</div>
       </div>
     );
   }

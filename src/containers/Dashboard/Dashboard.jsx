@@ -3,32 +3,35 @@ import { connect } from 'react-redux';
 import { Card } from '../../components/molecules/Card';
 import { Spinner } from '../../components/atoms/Spinner';
 import style from './style.scss';
-import { loadCards, loadFunnel } from '../../actions/DashboardActions';
+import {
+  loadCards,
+  getFunnelInThings,
+  getFunnelInMlns
+} from '../../actions/DashboardActions';
 import { FunnelPart } from '../../components/organisms/FunnelPart';
 
 class Dashboard extends React.Component {
   componentDidMount() {
-    const { loadCards, loadFunnel } = this.props;
+    const { loadCards, getFunnelInMlns } = this.props;
+    getFunnelInMlns();
     loadCards();
-    loadFunnel();
   }
   render() {
-    const { cards, funnel, table } = this.props;
-    console.log('22222', this.props);
+    const { cards, funnel, table, getFunnelInThings, loadCards } = this.props;
     return (
       <section className={style.dashboard}>
         <div className={style.cards}>
           <Cards cards={cards} />
+          <div onClick={loadCards}>reload</div>
         </div>
         <div className={style.funnelTable}>
           <div className={style.funnel}>
-            <FunnelPart funnel={funnel} />
+            <FunnelPart funnel={funnel} getFunnelInThings={getFunnelInThings} />
           </div>
           <div className={style.table}>
             <TablePart table={table} />
           </div>
         </div>
-        <div onClick={this.props.loadCards}>reload</div>
         <Spinner />
       </section>
     );
@@ -60,7 +63,8 @@ const mapStateToProps = store => {
 const mapDispatchToProps = dispatch => {
   return {
     loadCards: () => dispatch(loadCards()),
-    loadFunnel: () => dispatch(loadFunnel())
+    getFunnelInThings: () => dispatch(getFunnelInThings()),
+    getFunnelInMlns: () => dispatch(getFunnelInMlns())
   };
 };
 

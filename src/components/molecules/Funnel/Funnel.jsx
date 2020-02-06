@@ -7,9 +7,21 @@ import style from './style.scss';
 export class Funnel extends React.Component {
   render() {
     const { data, width, height } = this.props;
-    const figures = data.map(attr => (
-      <g key={attr.path.fill}>
-        <SvgFigure figure={'path'} attrs={attr.path} />
+    const figures = data.map((attr, i) => (
+      <g key={i}>
+        <SvgFigure figure={'path'} attrs={attr.path}>
+          <SvgFigure
+            figure={'animateTransform'}
+            attrs={{
+              attributeName: 'transform',
+              type: 'translate',
+              from: `-${attr.layerWidth} 0`,
+              to: `0 0`,
+              begin: '0s',
+              dur: '1s'
+            }}
+          />
+        </SvgFigure>
         <SvgFigure
           className={style.text}
           figure={'text'}
@@ -18,8 +30,16 @@ export class Funnel extends React.Component {
       </g>
     ));
     return (
-      <Svg width={width} height={height}>
+      <Svg className={style.test} width={width} height={height}>
         {figures}
+        <SvgFigure
+          figure={'animate'}
+          attrs={{
+            attributeName: 'opacity',
+            values: '0; 1',
+            dur: '1s'
+          }}
+        />
       </Svg>
     );
   }

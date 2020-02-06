@@ -1,22 +1,41 @@
 import {
-  SET_FUNNEL_STARTED,
-  SET_FUNNEL_SUCCESS,
-  SET_FUNNEL_FIALURE
+  GET_FUNNEL_IN_THINGS_STARTED,
+  GET_FUNNEL_IN_THINGS_SUCCESS,
+  GET_FUNNEL_IN_THINGS_FIALURE,
+  GET_FUNNEL_IN_MLNS_STARTED,
+  GET_FUNNEL_IN_MLNS_SUCCESS,
+  GET_FUNNEL_IN_MLNS_FIALURE
 } from '../actions/DashboardActions';
 
 const initialState = {
-  loading: false,
+  header: '',
+  types: [],
+  body: {},
   funnel: [],
+  loading: false,
   error: null
 };
 
 export function funnelReducer(state = initialState, action) {
+  // console.log(action);
   switch (action.type) {
-    case SET_FUNNEL_STARTED:
+    case GET_FUNNEL_IN_THINGS_STARTED:
+    case GET_FUNNEL_IN_MLNS_STARTED:
       return { ...state, loading: true };
-    case SET_FUNNEL_SUCCESS:
-      return { ...state, loading: false, funnel: action.payload };
-    case SET_FUNNEL_FIALURE:
+    case GET_FUNNEL_IN_THINGS_SUCCESS:
+    case GET_FUNNEL_IN_MLNS_SUCCESS:
+      console.log('asdfasfd');
+      return {
+        ...state,
+        header: action.payload.header,
+        types: action.payload.types,
+        body: action.payload.body,
+        funnel: action.payload.funnel,
+        loading: action.payload.loading,
+        error: action.payload.error
+      };
+    case GET_FUNNEL_IN_THINGS_FIALURE:
+    case GET_FUNNEL_IN_MLNS_FIALURE:
       return { ...state, loading: false, error: action.payload.error };
     default:
       return state;

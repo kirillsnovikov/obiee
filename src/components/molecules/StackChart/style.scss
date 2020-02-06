@@ -1,13 +1,23 @@
 .stackChart {
   display: flex;
+}
 
-  &__labels {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
-  &__item {
-    display: flex;
-    align-items: center;
+.labels {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5em;
+}
+.label {
+  display: flex;
+  align-items: center;
+  margin-right: 1em;
+  &__dot {
+    margin-right: 0.5em;
   }
 }

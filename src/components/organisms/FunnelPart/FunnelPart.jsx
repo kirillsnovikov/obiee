@@ -9,11 +9,12 @@ import style from './style.scss';
 
 export class FunnelPart extends React.Component {
   render() {
-    const { funnel } = this.props;
+    const { funnel, getFunnelInThings } = this.props;
+    console.log('pprprppr', this.props);
     const config = {
       height: 300,
       width: 228,
-      angle: 15,
+      angle: 18,
       dot: 7,
       layers: funnel.funnel
     };
@@ -39,7 +40,10 @@ export class FunnelPart extends React.Component {
           />
         </div>
         <div className={style['body-description']}></div>
-        <div className={style.bottom}>{labels}</div>
+        <div className={style.bottom}>
+          {labels}
+          <div onClick={getFunnelInThings}>reloadFunnel</div>
+        </div>
       </div>
     );
   }
