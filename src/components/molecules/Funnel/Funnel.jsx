@@ -28,15 +28,13 @@ export class Funnel extends React.Component {
                       from: `-${attr.layerWidth} 0`,
                       to: `0 0`,
                       begin: '0',
-                      dur: '1s',
+                      dur: '1s'
                     }}
                   />
                 </SvgFigure>
-
               </SvgFigure>
             </defs>
           </g>
-
           <g>
             <g clipPath={`url(#${clipPath})`}>
               <SvgFigure figure={'rect'} attrs={attr.rect} />

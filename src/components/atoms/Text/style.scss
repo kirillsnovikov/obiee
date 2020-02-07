@@ -1,0 +1,13 @@
+.text {
+  color: #ccc;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #000000;
+  &_type {
+    &_bold {
+      font-weight: 600;
+    }
+  }
+}

@@ -17,14 +17,12 @@ const initialState = {
 };
 
 export function funnelReducer(state = initialState, action) {
-  // console.log(action);
   switch (action.type) {
     case GET_FUNNEL_IN_THINGS_STARTED:
     case GET_FUNNEL_IN_MLNS_STARTED:
       return { ...state, loading: true };
     case GET_FUNNEL_IN_THINGS_SUCCESS:
     case GET_FUNNEL_IN_MLNS_SUCCESS:
-      console.log('asdfasfd');
       return {
         ...state,
         header: action.payload.header,

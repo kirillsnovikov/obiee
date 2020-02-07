@@ -2,6 +2,7 @@ import React from 'react';
 import { WaterChart } from '../WaterChart';
 import { StackChart } from '../StackChart';
 import { Button } from '../../atoms/Button';
+import { Subtitle } from '../../atoms/Text';
 import PropTypes from 'prop-types';
 import style from './style.scss';
 
@@ -13,19 +14,16 @@ export class Card extends React.Component {
         {
           type: 'left',
           name: 'План, млн.',
-          color: '#00cccc',
           data: data.plan
         },
         {
           type: 'right',
           name: 'Факт, млн.',
-          color: '#cc00cc',
           data: data.fact
         },
         {
           type: 'right',
           name: 'Pipe, млн.',
-          color: '#cccc00',
           data: data.pipe
         }
       ],
@@ -35,13 +33,12 @@ export class Card extends React.Component {
     return (
       <div className={`${style.card} ${className}`}>
         <div className={style.card__top}>
-          <span className={style.title}>{data.title}</span>
-          <Button
-            className={style.button}
-            type={'empty'}
-            goto={'#'}
-            name={'Подробнее'}
-          />
+          <span className={style.title}>
+            <Subtitle mod={'type_bold'}>{data.title}</Subtitle>
+          </span>
+          <Button type={'empty'} link={'#'}>
+            Подробнее
+          </Button>
         </div>
         <div className={style.card__bottom}>
           <div className={style.card__stackChart}>

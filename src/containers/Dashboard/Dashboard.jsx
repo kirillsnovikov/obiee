@@ -9,6 +9,8 @@ import {
   getFunnelInMlns
 } from '../../actions/DashboardActions';
 import { FunnelPart } from '../../components/organisms/FunnelPart';
+import { Text } from '../../components/atoms/Text';
+import { Button } from '../../components/atoms/Button';
 
 class Dashboard extends React.Component {
   componentDidMount() {
@@ -22,7 +24,10 @@ class Dashboard extends React.Component {
       <section className={style.dashboard}>
         <div className={style.cards}>
           <Cards cards={cards} />
-          <div onClick={loadCards}>reload</div>
+          {/* <p onClick={loadCards}>1111</p> */}
+          <Button action={loadCards} type={'full'}>
+            <Text>reload</Text>
+          </Button>
         </div>
         <div className={style.funnelTable}>
           <div className={style.funnel}>
@@ -42,10 +47,10 @@ const Cards = props => {
   return props.cards.loading ? (
     <Spinner />
   ) : (
-      props.cards.cards.map((card, i) => (
-        <Card className={style.cards__card} data={card} key={card.id + i} />
-      ))
-    );
+    props.cards.cards.map((card, i) => (
+      <Card className={style.cards__card} data={card} key={card.id + i} />
+    ))
+  );
 };
 
 const TablePart = props => {

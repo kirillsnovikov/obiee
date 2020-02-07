@@ -10,7 +10,6 @@ import style from './style.scss';
 export class FunnelPart extends React.Component {
   render() {
     const { funnel, getFunnelInThings } = this.props;
-    console.log('pprprppr', this.props);
     const config = {
       height: 300,
       width: 228,
@@ -30,24 +29,22 @@ export class FunnelPart extends React.Component {
     return funnel.loading ? (
       <Spinner />
     ) : (
-        <div className={style['funnel-part']}>
-          <div className={style.top}>{funnel.header}</div>
-          <div className={style['body-funnel']}>
-            <Funnel
-              data={funnelChart.attrs}
-              width={config.width}
-              height={config.height}
-            />
-          </div>
-          <div className={style['body-description']}>
-            {funnel.body.title}
-          </div>
-          <div className={style.bottom}>
-            {labels}
-            <div onClick={getFunnelInThings}>reloadFunnel</div>
-          </div>
+      <div className={style['funnel-part']}>
+        <div className={style.top}>{funnel.header}</div>
+        <div className={style['body-funnel']}>
+          <Funnel
+            data={funnelChart.attrs}
+            width={config.width}
+            height={config.height}
+          />
         </div>
-      );
+        <div className={style['body-description']}>{funnel.body.title}</div>
+        <div className={style.bottom}>
+          {labels}
+          <div onClick={getFunnelInThings}>reloadFunnel</div>
+        </div>
+      </div>
+    );
   }
 }
 

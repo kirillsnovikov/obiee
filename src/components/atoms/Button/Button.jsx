@@ -4,14 +4,22 @@ import style from './style.scss';
 
 export class Button extends React.Component {
   render() {
-    const { name, type, action, goto, className } = this.props;
+    const { children, type, action, link } = this.props;
     let button;
-    if (goto) {
-      button = <LinkButton goto={goto} name={name} type={type} />;
+    if (link) {
+      button = (
+        <LinkButton link={link} type={type}>
+          {children}
+        </LinkButton>
+      );
     } else {
-      button = <ActionButton action={action} name={name} type={type} />;
+      button = (
+        <ActionButton action={action} type={type}>
+          {children}
+        </ActionButton>
+      );
     }
-    return <div className={className}>{button}</div>;
+    return <div>{button}</div>;
   }
 }
 const ActionButton = props => {
@@ -20,29 +28,27 @@ const ActionButton = props => {
       className={[style.button, style[`button_type_${props.type}`]].join(' ')}
       onClick={props.action}
     >
-      {props.name}
+      {props.children}
     </div>
   );
 };
 const LinkButton = props => {
   return (
     <a
-      href={props.goto}
+      href={props.link}
       className={[
         style.button,
         style.link,
         style[`button_type_${props.type}`]
       ].join(' ')}
     >
-      {props.name}
+      {props.children}
     </a>
   );
 };
 
 Button.propTypes = {
-  name: PropTypes.string,
   type: PropTypes.string.isRequired,
-  action: PropTypes.string,
-  goto: PropTypes.string,
-  className: PropTypes.string
+  action: PropTypes.func,
+  link: PropTypes.string
 };

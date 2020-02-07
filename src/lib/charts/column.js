@@ -4,19 +4,16 @@
  *     {
  *       type: 'left',
  *       name: 'План, млн.',
- *       color: '#cccccc',
  *       data: 30
  *     },
  *     {
  *       type: 'right',
  *       name: 'Факт, млн.',
- *       color: '#cccccc',
  *       data: 80
  *     },
  *     {
  *       type: 'right',
  *       name: 'Pipe, млн.',
- *       color: '#cccccc',
  *       data: 30
  *     }
  *   ],
@@ -29,6 +26,7 @@ export class StackPrcColumn {
   constructor(config) {
     this._series = config.series;
     this._absSize = config.height;
+    this._colors = config.colors;
   }
 
   get width() {
@@ -39,10 +37,11 @@ export class StackPrcColumn {
     return this._absSize / 20;
   }
 
-  get rects() {
+  get attrs() {
     let res = [];
-    res = res.concat(this._calculateRect('left'));
-    res = res.concat(this._calculateRect('right'));
+    Object.keys(this.config.types).forEach((type, i) => {
+      res = res.concat(this._calculateRect(type, i));
+    });
     return res;
   }
 
@@ -50,30 +49,39 @@ export class StackPrcColumn {
     return this.width * 2 + this.gap;
   }
 
-  _calculateRect(type) {
+  _calculateRect(type, typeNum) {
+    let relativeSize = this.relativeSize;
     let res = [];
     this._typeCol(type).forEach((col, i) => {
-      let relativeSize = this.relativeSize;
       let height = col.data * relativeSize;
-      let x = type === 'left' ? 0 : this.width + this.gap;
-      let y = i > 0 ? res[i - 1].y - height : this._absSize - height;
-      res.push({
-        x: x,
-        y: y,
-        width: this.width,
-        height: height,
-        fill: col.color,
-        name: col.name,
-        data: col.data
-      });
+      let gradId = `gradient_${type}_${i}`;
+      let x = typeNum === 0 ? 0 : this.width * typeNum + this.gap;
+      let y = i > 0 ? res[i - 1].rect.y - height : this._absSize - height;
+      let attrs = {
+        rect: {
+          x: x,
+          y: y,
+          width: this.width,
+          height: height,
+          fill: `url(#${gradId})`,
+          name: col.name,
+          data: col.data
+        },
+        gradient: {
+          id: gradId,
+          config: this.config.types[type].gradients[i]
+        }
+      };
+      res.push(attrs);
     });
     return res;
   }
 
   get relativeSize() {
-    let left = this._typeSize('left');
-    let right = this._typeSize('right');
-    let maxSize = left >= right ? left : right;
+    let maxSize = Math.max.apply(
+      null,
+      Object.keys(this.config.types).map(key => this._typeSize(key))
+    );
     return +(this._absSize / maxSize).toFixed(2);
   }
 
@@ -90,4 +98,59 @@ export class StackPrcColumn {
       return ser.type === type;
     });
   }
+
+  config = {
+    types: {
+      left: {
+        gradients: [
+          {
+            type: 'linearGradient',
+            rotate: 0,
+            stops: [
+              {
+                stopColor: '#22C7ff',
+                offset: 0
+              },
+              {
+                stopColor: '#ff22C0',
+                offset: 1
+              }
+            ]
+          }
+        ]
+      },
+      right: {
+        gradients: [
+          {
+            type: 'linearGradient',
+            rotate: 0,
+            stops: [
+              {
+                stopColor: '#0A2844',
+                offset: 0
+              },
+              {
+                stopColor: '#E3655B',
+                offset: 1
+              }
+            ]
+          },
+          {
+            type: 'linearGradient',
+            rotate: 0,
+            stops: [
+              {
+                stopColor: '#4f87ff',
+                offset: 0
+              },
+              {
+                stopColor: '#FDE74C',
+                offset: 1
+              }
+            ]
+          }
+        ]
+      }
+    }
+  };
 }

@@ -3,17 +3,30 @@ import { Svg } from './../../atoms/Svg';
 import { SvgFigure } from '../../atoms/SvgFigure';
 import PropTypes from 'prop-types';
 import { StackPrcColumn } from '../../../lib/charts';
+import { Gradient } from '../Gradient';
 import style from './style.scss';
 
 export class StackChart extends React.Component {
   render() {
     const { config } = this.props;
     const chart = new StackPrcColumn(config);
-    // console.log(style);
-    const rects = chart.rects.map((rect, i) => (
-      <SvgFigure figure={'rect'} attrs={rect} key={`${i}_${rect.color}`} />
-    ));
-    const labels = chart.rects.map((rect, i) => {
+    const rects = chart.attrs.map((attr, i) => {
+      let rect = attr.rect;
+      let gradient = attr.gradient;
+      return (
+        <g key={`${i}_${rect.color}`}>
+          <SvgFigure figure={'rect'} attrs={rect} />
+          <Gradient
+            type={gradient.config.type}
+            stops={gradient.config.stops}
+            id={gradient.id}
+            rotate={gradient.config.rotate}
+          />
+        </g>
+      );
+    });
+    const labels = chart.attrs.map((attr, i) => {
+      let rect = attr.rect;
       let circleAttrs = {
         r: config.pointSize / 2,
         cx: config.pointSize / 2,
