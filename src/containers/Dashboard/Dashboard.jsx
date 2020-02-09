@@ -6,32 +6,51 @@ import style from './style.scss';
 import {
   loadCards,
   getFunnelInThings,
-  getFunnelInMlns
+  getFunnelInMlns,
+  getTableData
 } from '../../actions/DashboardActions';
 import { FunnelPart } from '../../components/organisms/FunnelPart';
+import { TablePart } from '../../components/organisms/TablePart';
 import { Text } from '../../components/atoms/Text';
 import { Button } from '../../components/atoms/Button';
 
 class Dashboard extends React.Component {
   componentDidMount() {
-    const { loadCards, getFunnelInMlns } = this.props;
+    const { loadCards, getFunnelInMlns, getTableData } = this.props;
     getFunnelInMlns();
     loadCards();
+    getTableData();
   }
   render() {
-    const { cards, funnel, table, getFunnelInThings, loadCards } = this.props;
+    const {
+      cards,
+      funnel,
+      table,
+      getFunnelInThings,
+      getFunnelInMlns,
+      loadCards,
+      getTableData
+    } = this.props;
+    const reloadPage = () => {
+      getFunnelInMlns();
+      loadCards();
+      getTableData();
+    };
     return (
       <section className={style.dashboard}>
         <div className={style.cards}>
           <Cards cards={cards} />
-          {/* <p onClick={loadCards}>1111</p> */}
-          <Button action={loadCards} type={'full'}>
+          <Button action={reloadPage} type={'full'}>
             <Text>reload</Text>
           </Button>
         </div>
         <div className={style.funnelTable}>
           <div className={style.funnel}>
-            <FunnelPart funnel={funnel} getFunnelInThings={getFunnelInThings} />
+            <FunnelPart
+              funnel={funnel}
+              getFunnelInThings={getFunnelInThings}
+              getFunnelInMlns={getFunnelInMlns}
+            />
           </div>
           <div className={style.table}>
             <TablePart table={table} />
@@ -53,9 +72,9 @@ const Cards = props => {
   );
 };
 
-const TablePart = props => {
-  return props.table.loading ? <Spinner /> : <div>table</div>;
-};
+// const TablePart = props => {
+//   return props.table.loading ? <Spinner /> : <div>table</div>;
+// };
 
 const mapStateToProps = store => {
   return {
@@ -69,7 +88,8 @@ const mapDispatchToProps = dispatch => {
   return {
     loadCards: () => dispatch(loadCards()),
     getFunnelInThings: () => dispatch(getFunnelInThings()),
-    getFunnelInMlns: () => dispatch(getFunnelInMlns())
+    getFunnelInMlns: () => dispatch(getFunnelInMlns()),
+    getTableData: () => dispatch(getTableData())
   };
 };
 

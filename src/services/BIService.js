@@ -1,10 +1,11 @@
 import { random } from '../helpers/helper';
+import { ColumnData } from '../helpers/table';
 
 class BIService {
   getFunnelInThings = () => {
     const data = {
       header: 'Воронка продаж',
-      types: ['Кол-во сделок, шт', 'Сумма сделок, млн'],
+      type: 'Кол-во сделок, шт',
       body: {
         title: 'Уровень конверсии',
         data: [
@@ -36,7 +37,7 @@ class BIService {
   getFunnelInMlns = () => {
     const data = {
       header: 'Воронка продаж',
-      types: ['Кол-во сделок, шт', 'Сумма сделок, млн'],
+      type: 'Сумма сделок, млн',
       body: {
         title: 'Уровень конверсии',
         data: [
@@ -63,6 +64,73 @@ class BIService {
     data.funnel = funnel;
     data.loading = false;
     return data;
+  };
+
+  getTableData = () => {
+    let table = {};
+    table.data = [
+      {
+        stage: 'Создание',
+        dealsCntInStage: random(30, 400),
+        totalInMlns: random(1000, 200000) / 1000,
+        chance: `${random(0, 100)},0%`,
+        totalWithChanceInMlns: random(10000, 2000000) / 10000
+      },
+      {
+        stage: 'Создание',
+        dealsCntInStage: random(30, 400),
+        totalInMlns: random(1000, 200000) / 1000,
+        chance: `${random(0, 100)},0%`,
+        totalWithChanceInMlns: random(10000, 2000000) / 10000
+      },
+      {
+        stage: 'Оформление',
+        dealsCntInStage: random(30, 400),
+        totalInMlns: random(1000, 200000) / 1000,
+        chance: `${random(0, 100)},0%`,
+        totalWithChanceInMlns: random(10000, 2000000) / 10000
+      },
+      {
+        stage: 'Оформление',
+        dealsCntInStage: random(30, 400),
+        totalInMlns: random(1000, 200000) / 1000,
+        chance: `${random(0, 100)},0%`,
+        totalWithChanceInMlns: random(10000, 2000000) / 10000
+      },
+      {
+        stage: 'Итого',
+        dealsCntInStage: random(30, 400),
+        totalInMlns: random(1000, 200000) / 1000,
+        chance: `${random(0, 100)},0%`,
+        totalWithChanceInMlns: random(10000, 2000000) / 10000
+      }
+    ];
+
+    table.columns = [
+      new ColumnData({
+        Name: 'stage',
+        Display: 'Этап',
+        Type: 'label'
+      }),
+      new ColumnData({
+        Name: 'dealsCntInStage',
+        Display: 'Кол-во сделок на этапе'
+      }),
+      new ColumnData({
+        Name: 'totalInMlns',
+        Display: 'Сумма, млн.'
+      }),
+      new ColumnData({
+        Name: 'chance',
+        Display: 'Вероятность, %'
+      }),
+      new ColumnData({
+        Name: 'totalWithChanceInMlns',
+        Display: 'Сумма с учетом вероятности, млн.',
+        Width: 150
+      })
+    ];
+    return table;
   };
 }
 

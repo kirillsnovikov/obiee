@@ -10,9 +10,9 @@ export const GET_FUNNEL_IN_THINGS_STARTED = 'GET_FUNNEL_IN_THINGS_STARTED';
 export const GET_FUNNEL_IN_MLNS_SUCCESS = 'GET_FUNNEL_IN_MLNS_SUCCESS';
 export const GET_FUNNEL_IN_MLNS_FIALURE = 'GET_FUNNEL_IN_MLNS_FIALURE';
 export const GET_FUNNEL_IN_MLNS_STARTED = 'GET_FUNNEL_IN_MLNS_STARTED';
-export const SET_TABLE_SUCCESS = 'SET_TABLE_SUCCESS';
-export const SET_TABLE_FIALURE = 'SET_TABLE_FIALURE';
-export const SET_TABLE_STARTED = 'SET_TABLE_STARTED';
+export const GET_TABLE_DATA_SUCCESS = 'GET_TABLE_DATA_SUCCESS';
+export const GET_TABLE_DATA_FIALURE = 'GET_TABLE_DATA_FIALURE';
+export const GET_TABLE_DATA_STARTED = 'GET_TABLE_DATA_STARTED';
 
 export function loadCards() {
   return dispatch => {
@@ -34,7 +34,7 @@ export function loadCards() {
       }
 
       dispatch(loadCardsSuccess(res));
-    }, 1000);
+    }, 1500);
   };
 }
 
@@ -55,6 +55,16 @@ export const getFunnelInMlns = () => {
       let data = BIService.getFunnelInMlns();
       dispatch(getFunnelInMlnsSuccess(data));
     }, 1000);
+  };
+};
+
+export const getTableData = () => {
+  return dispatch => {
+    dispatch(getTableDataStarted());
+    setTimeout(() => {
+      let data = BIService.getTableData();
+      dispatch(getTableDataSuccess(data));
+    }, 2500);
   };
 };
 
@@ -83,4 +93,12 @@ const getFunnelInMlnsSuccess = funnel => ({
 
 const getFunnelInMlnsStarted = () => ({
   type: GET_FUNNEL_IN_MLNS_STARTED
+});
+
+const getTableDataStarted = () => ({
+  type: GET_TABLE_DATA_STARTED
+});
+const getTableDataSuccess = table => ({
+  type: GET_TABLE_DATA_SUCCESS,
+  payload: table
 });

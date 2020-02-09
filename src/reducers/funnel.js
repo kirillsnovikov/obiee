@@ -9,8 +9,11 @@ import {
 
 const initialState = {
   header: '',
-  types: [],
-  body: {},
+  type: '',
+  body: {
+    title: '',
+    data: []
+  },
   funnel: [],
   loading: false,
   error: null
@@ -26,7 +29,7 @@ export function funnelReducer(state = initialState, action) {
       return {
         ...state,
         header: action.payload.header,
-        types: action.payload.types,
+        type: action.payload.type,
         body: action.payload.body,
         funnel: action.payload.funnel,
         loading: action.payload.loading,

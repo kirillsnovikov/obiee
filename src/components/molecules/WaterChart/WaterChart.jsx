@@ -3,12 +3,14 @@ import { Svg } from './../../atoms/Svg';
 import { SvgFigure } from '../../atoms/SvgFigure';
 import PropTypes from 'prop-types';
 import { Water } from '../../../lib/charts';
+import { Gradient } from '../Gradient';
 import style from './style.scss';
 
 export class WaterChart extends React.Component {
   render() {
     const { width, pct, id } = this.props;
     const waveId = `clipWavefillgauge${id}`;
+    const gradientId = `waveGradient_${id}`;
     const chart = new Water(pct, width);
     return (
       <Svg width={chart.size} height={chart.size}>
@@ -81,8 +83,14 @@ export class WaterChart extends React.Component {
                 cx: chart.chartCenterCoords,
                 cy: chart.chartCenterCoords,
                 r: chart.chartRadius,
-                fill: chart.color
+                fill: `url(#${gradientId})`
               }}
+            />
+            <Gradient
+              type={chart.color.type}
+              stops={chart.color.stops}
+              id={gradientId}
+              rotate={chart.color.rotate}
             />
           </g>
           <SvgFigure

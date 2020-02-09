@@ -5,34 +5,67 @@
     'body-funnel body-description'
     'bottom bottom';
   grid-template-columns: auto 1fr;
-  grid-template-rows: 50px 1fr 50px;
-  padding: 25px 0 40px 30px;
+  grid-template-rows   : 50px 1fr 50px;
+  padding              : 25px 0 40px 30px;
 }
 
 .top {
   grid-area: top;
-  font-weight: bold;
+  display  : flex;
+}
+
+.checkboxes {
+  display       : flex;
+  // align-items: center;
 }
 
 .bottom {
-  grid-area: bottom;
-  display: flex;
+  grid-area  : bottom;
   align-items: center;
+  display    : flex;
 }
 
 .body-funnel {
   grid-area: body-funnel;
 }
 
-.body-description {
-  grid-area: body-description;
+.bodyDescription {
+  grid-area      : body-description;
+  display        : flex;
+  justify-content: center;
+  flex-direction : column;
+  padding-left   : 2em;
+
+  &__title {
+    margin-bottom: 1em;
+  }
+
+  &__value {
+    display     : inline-block;
+    margin-right: 0.5em;
+
+    &::after {
+      content: ':';
+    }
+  }
+
+  &__item {
+    &:first-child {
+      margin-right: 1em;
+
+      &::after {
+        content: ':'
+      }
+    }
+  }
 }
 
 .label {
   margin-right: 20px;
-  display: flex;
-  align-items: center;
-  &__value {
-    margin-left: 10px;
+  display     : flex;
+  align-items : center;
+
+  &__name {
+    margin-left: .625em;
   }
 }

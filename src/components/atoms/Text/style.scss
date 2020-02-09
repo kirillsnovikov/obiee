@@ -1,10 +1,62 @@
+$--primary-color   : #173AB3;
+$--dark-color      : #2D3442;
+$--secondary-color : #828894;
+$--danger-color    : #EC3638;
+
 .text {
-  color: #ccc;
+  color    : #000000;
+  font-size: 12px;
+
+  &_type {
+    &_bold {
+      font-weight: 600;
+    }
+  }
+
+  &_size {
+    &_l {
+      font-size: 14px;
+    }
+
+    &_xl {
+      font-size: 16.8px;
+    }
+  }
+
+  &_color {
+    &_dark {
+      color: $--dark-color;
+    }
+
+    &_secondary {
+      color: $--secondary-color;
+    }
+
+    &_primary {
+      color: $--primary-color;
+    }
+
+    &_danger {
+      color: $--danger-color;
+    }
+  }
+}
+
+.title {
+  font-size  : 24px;
+  font-weight: 800;
+
+  &_color {
+    &_primary {
+      color: $--primary-color;
+    }
+  }
 }
 
 .subtitle {
+  color    : #000000;
   font-size: 16px;
-  color: #000000;
+
   &_type {
     &_bold {
       font-weight: 600;

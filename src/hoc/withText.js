@@ -1,9 +1,9 @@
 import React from 'react';
 
-const withText = (Wrapped, type) => {
+const withText = (Wrapped, block) => {
   return class extends React.Component {
     render() {
-      return <Wrapped style={type} {...this.props} />;
+      return <Wrapped block={block} {...this.props} />;
     }
   };
 };

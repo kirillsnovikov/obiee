@@ -1,4 +1,4 @@
-import { getCathetByAngleAndNearCathet } from '../../helpers/helper';
+import { getCathetByAngleAndNearCathet } from "../../helpers/helper";
 
 export class FunnelVertical {
   constructor(config) {
@@ -15,7 +15,7 @@ export class FunnelVertical {
     let dotRadius = this.dot / 2;
     let layerHeight = this.layers.length
       ? (this.height - (this.layers.length - 1) * this.options.gap) /
-      this.layers.length
+        this.layers.length
       : 0;
     let fontSize = layerHeight / 3.6;
     this.layers.forEach((layer, i) => {
@@ -56,7 +56,7 @@ export class FunnelVertical {
   }
 
   options = {
-    layerColors: ['#E0E4A9', '#2340CA', '#4994F1'],
+    layerColors: ["#E0E4A9", "#2340CA", "#4994F1"],
     gap: 10
   };
 }

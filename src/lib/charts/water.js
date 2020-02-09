@@ -53,17 +53,67 @@ export class Water {
     return path;
   }
   get color() {
-    return this.options.percentColors.find(grade => {
+    let gradient = this.options.percentColors.find(grade => {
       return this._pct <= grade.pct;
-    }).color;
+    }).gradient;
+    gradient.stops[gradient.stops.length - 1].offset = this._pct / 100;
+    return gradient;
   }
 
   options = {
     borderWidth: 0.3,
     percentColors: [
-      { pct: 20, color: '#EC232F' },
-      { pct: 70, color: '#FECB2F' },
-      { pct: 100, color: '#49AE48' }
+      {
+        pct: 20,
+        gradient: {
+          type: 'linearGradient',
+          rotate: `270 0.5 0.5`,
+          stops: [
+            {
+              stopColor: '#EC232F',
+              offset: 0
+            },
+            {
+              stopColor: '#EB6B52',
+              offset: 1
+            }
+          ]
+        }
+      },
+      {
+        pct: 70,
+        gradient: {
+          type: 'linearGradient',
+          rotate: `270 0.5 0.5`,
+          stops: [
+            {
+              stopColor: '#FFE568',
+              offset: 0
+            },
+            {
+              stopColor: '#FECB2F',
+              offset: 1
+            }
+          ]
+        }
+      },
+      {
+        pct: 100,
+        gradient: {
+          type: 'linearGradient',
+          rotate: `270 0.5 0.5`,
+          stops: [
+            {
+              stopColor: '#AECA0C',
+              offset: 0
+            },
+            {
+              stopColor: '#49AE48',
+              offset: 1
+            }
+          ]
+        }
+      }
     ],
     waveCnt: 2
   };

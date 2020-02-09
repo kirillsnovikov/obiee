@@ -34,7 +34,7 @@ export class Card extends React.Component {
       <div className={`${style.card} ${className}`}>
         <div className={style.card__top}>
           <span className={style.title}>
-            <Subtitle mod={'type_bold'}>{data.title}</Subtitle>
+            <Subtitle mod={{ type: 'bold' }}>{data.title}</Subtitle>
           </span>
           <Button type={'empty'} link={'#'}>
             Подробнее

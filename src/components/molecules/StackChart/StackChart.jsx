@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { StackPrcColumn } from '../../../lib/charts';
 import { Gradient } from '../Gradient';
 import style from './style.scss';
+import { Text } from '../../atoms/Text';
 
 export class StackChart extends React.Component {
   render() {
@@ -15,7 +16,37 @@ export class StackChart extends React.Component {
       let gradient = attr.gradient;
       return (
         <g key={`${i}_${rect.color}`}>
-          <SvgFigure figure={'rect'} attrs={rect} />
+          <SvgFigure figure={'rect'} attrs={rect}>
+            <SvgFigure
+              figure={'animate'}
+              attrs={{
+                attributeName: 'height',
+                from: `0`,
+                to: `${rect.height}`,
+                begin: '0',
+                dur: '1s'
+              }}
+            />
+            <SvgFigure
+              figure={'animate'}
+              attrs={{
+                attributeName: 'opacity',
+                values: '0; 1',
+                dur: '2s'
+              }}
+            />
+            <SvgFigure
+              figure={'animateTransform'}
+              attrs={{
+                attributeName: 'transform',
+                type: 'translate',
+                from: `0 ${rect.height}`,
+                to: `0 0`,
+                begin: '0',
+                dur: '1s'
+              }}
+            />
+          </SvgFigure>
           <Gradient
             type={gradient.config.type}
             stops={gradient.config.stops}
@@ -36,14 +67,14 @@ export class StackChart extends React.Component {
       return (
         <div className={style.item} key={`${i}_${rect.data}`}>
           <div className={style.label}>
-            <div className={style.label__dot}>
-              <Svg height={config.pointSize} width={config.pointSize}>
-                <SvgFigure figure={'circle'} attrs={circleAttrs} />
-              </Svg>
-            </div>
-            <div className={style.label__name}>{`${rect.name}:`}</div>
+            <Svg height={config.pointSize} width={config.pointSize}>
+              <SvgFigure figure={'circle'} attrs={circleAttrs} />
+            </Svg>
+            <span className={style.label__name}>
+              <Text>{`${rect.name}:`}</Text>
+            </span>
           </div>
-          <div className={style.value}>{rect.data}</div>
+          <Text mod={{ type: 'bold' }}>{rect.data}</Text>
         </div>
       );
     });

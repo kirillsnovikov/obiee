@@ -105,14 +105,14 @@ export class StackPrcColumn {
         gradients: [
           {
             type: 'linearGradient',
-            rotate: 0,
+            rotate: '0',
             stops: [
               {
-                stopColor: '#22C7ff',
+                stopColor: '#C7C7C9',
                 offset: 0
               },
               {
-                stopColor: '#ff22C0',
+                stopColor: '#C7C7C9',
                 offset: 1
               }
             ]
@@ -123,28 +123,28 @@ export class StackPrcColumn {
         gradients: [
           {
             type: 'linearGradient',
-            rotate: 0,
+            rotate: '0',
             stops: [
               {
-                stopColor: '#0A2844',
+                stopColor: '#0A28AB',
                 offset: 0
               },
               {
-                stopColor: '#E3655B',
+                stopColor: '#213FC5',
                 offset: 1
               }
             ]
           },
           {
             type: 'linearGradient',
-            rotate: 0,
+            rotate: '0',
             stops: [
               {
-                stopColor: '#4f87ff',
+                stopColor: '#2C87EC',
                 offset: 0
               },
               {
-                stopColor: '#FDE74C',
+                stopColor: '#3F93F0',
                 offset: 1
               }
             ]

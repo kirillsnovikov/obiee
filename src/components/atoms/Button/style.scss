@@ -1,37 +1,47 @@
-$btn-color: #001fa7;
-$btn-border: 1px solid $btn-color;
+$btn-color        : #001fa7;
+$btn-border       : 1px solid $btn-color;
 $btn-border-radius: 2px;
 
 .button {
-  padding: 0.5em 1em;
-  cursor: pointer;
-  display: inline-block;
+  padding      : 0.5em 1em;
+  cursor       : pointer;
+  display      : inline-block;
   border-radius: $btn-border-radius;
-  color: $btn-color;
-  border: $btn-border;
+  color        : $btn-color;
+  border       : $btn-border;
 
   &_type {
     &_empty {
       &:hover {
-        // border: none;
+        // border : none;
         background: $btn-color;
-        color: #fff;
+        color     : #fff;
+      }
+
+      &:active {
+        background: rgba($btn-color, 0.7)
       }
     }
+
     &_full {
-      color: #fff;
+      color     : #fff;
       background: $btn-color;
       box-sizing: border-box;
+
       &:hover {
-        border: $btn-border;
+        border    : $btn-border;
         background: none;
-        color: $btn-color;
+        color     : $btn-color;
+      }
+
+      &:active {
+        background: rgba($btn-color, 0.7)
       }
     }
   }
 }
 
-.link {
+a.link {
   text-decoration: none;
-  // color: inherit;
+  // color       : inherit;
 }

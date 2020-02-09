@@ -1,0 +1,58 @@
+$--primary-color   : #173AB3;
+$--secondary-color : #828894;
+
+.label {
+  position   : relative;
+  margin-left: 20px;
+}
+
+.input {
+  position: absolute;
+  z-index : -1;
+  opacity : 0;
+  left    : -9999;
+}
+
+
+.text {
+  position: relative;
+  padding : 0 0 0 30px;
+  cursor  : pointer;
+
+
+  &::before {
+    content      : '';
+    position     : absolute;
+    top          : 0;
+    left         : 0;
+    width        : 16px;
+    height       : 16px;
+    border       : 1px solid $--secondary-color;
+    border-radius: 50%;
+  }
+
+  &::after {
+    content      : '';
+    position     : absolute;
+    top          : 4px;
+    left         : 4px;
+    width        : 10px;
+    height       : 10px;
+    border-radius: 50%;
+    background   : $--primary-color;
+    opacity      : 0;
+    transition   : .2s;
+  }
+
+  &_active {
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &_active {
+    &::before {
+      border: 1px solid $--primary-color;
+    }
+  }
+}

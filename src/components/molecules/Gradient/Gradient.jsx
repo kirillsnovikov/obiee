@@ -24,5 +24,5 @@ Gradient.propTypes = {
   type: PropTypes.string.isRequired,
   stops: PropTypes.array.isRequired,
   id: PropTypes.string,
-  rotate: PropTypes.number
+  rotate: PropTypes.string
 };
