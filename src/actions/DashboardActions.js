@@ -64,7 +64,7 @@ export const getTableData = () => {
     setTimeout(() => {
       let data = BIService.getTableData();
       dispatch(getTableDataSuccess(data));
-    }, 2500);
+    }, 2000);
   };
 };
 

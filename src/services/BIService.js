@@ -110,24 +110,28 @@ class BIService {
       new ColumnData({
         Name: 'stage',
         Display: 'Этап',
-        Type: 'label'
+        Type: 'label',
+        Width: 112
       }),
       new ColumnData({
         Name: 'dealsCntInStage',
-        Display: 'Кол-во сделок на этапе'
+        Display: 'Кол-во сделок на этапе',
+        Width: 126
       }),
       new ColumnData({
         Name: 'totalInMlns',
-        Display: 'Сумма, млн.'
+        Display: 'Сумма, млн.',
+        Width: 121
       }),
       new ColumnData({
         Name: 'chance',
-        Display: 'Вероятность, %'
+        Display: 'Вероятность, %',
+        Width: 125
       }),
       new ColumnData({
         Name: 'totalWithChanceInMlns',
         Display: 'Сумма с учетом вероятности, млн.',
-        Width: 150
+        Width: 165
       })
     ];
     return table;

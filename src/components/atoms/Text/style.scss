@@ -1,10 +1,11 @@
-$--primary-color   : #173AB3;
-$--dark-color      : #2D3442;
-$--secondary-color : #828894;
-$--danger-color    : #EC3638;
+$--primary-color: #173ab3;
+$--dark-color: #2d3442;
+$--dark-light-color: #687684;
+$--secondary-color: #828894;
+$--danger-color: #ec3638;
 
 .text {
-  color    : #000000;
+  color: #000000;
   font-size: 12px;
 
   &_type {
@@ -28,6 +29,10 @@ $--danger-color    : #EC3638;
       color: $--dark-color;
     }
 
+    &_dark-light {
+      color: $--dark-light-color;
+    }
+
     &_secondary {
       color: $--secondary-color;
     }
@@ -43,7 +48,7 @@ $--danger-color    : #EC3638;
 }
 
 .title {
-  font-size  : 24px;
+  font-size: 24px;
   font-weight: 800;
 
   &_color {
@@ -54,7 +59,7 @@ $--danger-color    : #EC3638;
 }
 
 .subtitle {
-  color    : #000000;
+  color: #000000;
   font-size: 16px;
 
   &_type {

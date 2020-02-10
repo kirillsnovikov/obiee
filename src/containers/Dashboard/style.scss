@@ -9,6 +9,7 @@ $border-radius: 8px;
   grid-template-columns: 1fr;
   grid-template-rows: 200px 1fr;
   grid-row-gap: 20px;
+  text-align: left;
 }
 
 .cards {
@@ -41,4 +42,5 @@ $border-radius: 8px;
   box-shadow: $shadow;
   border-radius: $border-radius;
   height: 468px;
+  padding: 25px 30px 40px 30px;
 }

@@ -1,0 +1,16 @@
+.table-part {
+  display: grid;
+  grid-template-areas:
+    'top'
+    'body';
+  grid-template-columns: 1fr;
+  grid-template-rows: 50px 1fr;
+}
+
+.top {
+  grid-area: top;
+}
+
+.body {
+  grid-area: body;
+}

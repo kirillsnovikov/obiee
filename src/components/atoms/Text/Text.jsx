@@ -6,7 +6,6 @@ import { cn } from '@bem-react/classname';
 
 class Text extends React.Component {
   render() {
-    // const { mod } = this.props;
     const block = cn(this.props.block);
     const className = block(this.props.mod)
       .split(' ')
