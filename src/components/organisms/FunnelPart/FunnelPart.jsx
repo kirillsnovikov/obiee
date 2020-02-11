@@ -83,10 +83,7 @@ export class FunnelPart extends React.Component {
           </div>
           {body}
         </div>
-        <div className={style.bottom}>
-          {labels}
-          <div onClick={getFunnelInThings}>reloadFunnelff</div>
-        </div>
+        <div className={style.bottom}>{labels}</div>
       </div>
     );
   }

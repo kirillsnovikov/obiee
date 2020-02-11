@@ -11,8 +11,7 @@ import {
 } from '../../actions/DashboardActions';
 import { FunnelPart } from '../../components/organisms/FunnelPart';
 import { TablePart } from '../../components/organisms/TablePart';
-import { Text } from '../../components/atoms/Text';
-import { Button } from '../../components/atoms/Button';
+import { Icon } from '../../components/atoms/Icon';
 
 class Dashboard extends React.Component {
   componentDidMount() {
@@ -27,23 +26,14 @@ class Dashboard extends React.Component {
       funnel,
       table,
       getFunnelInThings,
-      getFunnelInMlns,
-      loadCards,
-      getTableData
+      getFunnelInMlns
     } = this.props;
-    const reloadPage = () => {
-      getFunnelInMlns();
-      loadCards();
-      getTableData();
-    };
     return (
       <section className={style.dashboard}>
         <div className={style.cards}>
           <Cards cards={cards} />
-          <Button action={reloadPage} type={'full'}>
-            <Text>reload</Text>
-          </Button>
         </div>
+        <Icon />
         <div className={style.funnelTable}>
           <div className={style.funnel}>
             <FunnelPart
@@ -56,7 +46,6 @@ class Dashboard extends React.Component {
             <TablePart table={table} />
           </div>
         </div>
-        <Spinner />
       </section>
     );
   }
@@ -71,10 +60,6 @@ const Cards = props => {
     ))
   );
 };
-
-// const TablePart = props => {
-//   return props.table.loading ? <Spinner /> : <div>table</div>;
-// };
 
 const mapStateToProps = store => {
   return {

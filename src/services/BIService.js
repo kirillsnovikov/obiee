@@ -3,6 +3,7 @@ import { ColumnData } from '../helpers/table';
 
 class BIService {
   getFunnelInThings = () => {
+    const names = ['Создание', 'Оформление', 'Продажа'];
     const data = {
       header: 'Воронка продаж',
       type: 'Кол-во сделок, шт',
@@ -24,7 +25,7 @@ class BIService {
     for (let i = 0; i < 3; i++) {
       let layer = {
         order: i + 1,
-        name: `NAME_${i + 1}`,
+        name: names[i],
         data: random(0, 100)
       };
       funnel.push(layer);
@@ -35,6 +36,7 @@ class BIService {
   };
 
   getFunnelInMlns = () => {
+    const names = ['Создание', 'Оформление', 'Продажа'];
     const data = {
       header: 'Воронка продаж',
       type: 'Сумма сделок, млн',
@@ -56,7 +58,7 @@ class BIService {
     for (let i = 0; i < 3; i++) {
       let layer = {
         order: i + 1,
-        name: `NAME_MLNS${i + 1}`,
+        name: names[i],
         data: random(0, 100)
       };
       funnel.push(layer);

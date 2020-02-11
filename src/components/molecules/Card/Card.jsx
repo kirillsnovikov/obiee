@@ -36,9 +36,11 @@ export class Card extends React.Component {
           <span className={style.title}>
             <Subtitle mod={{ type: 'bold' }}>{data.title}</Subtitle>
           </span>
-          <Button type={'empty'} link={'#'}>
-            Подробнее
-          </Button>
+          <div className={style.button}>
+            <Button type={'empty'} link={'#'}>
+              Подробнее
+            </Button>
+          </div>
         </div>
         <div className={style.card__bottom}>
           <div className={style.card__stackChart}>
