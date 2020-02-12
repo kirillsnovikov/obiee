@@ -1,6 +1,5 @@
 import React from 'react';
-import { Svg } from './../../atoms/Svg';
-import { SvgFigure } from '../../atoms/SvgFigure';
+import { Svg, SvgFigure } from './../../atoms/Svg';
 import PropTypes from 'prop-types';
 import style from './style.scss';
 

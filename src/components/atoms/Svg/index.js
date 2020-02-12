@@ -1,1 +1,1 @@
-export { Svg } from './Svg.jsx';
+export { Svg, SvgFigure } from './Svg.jsx';

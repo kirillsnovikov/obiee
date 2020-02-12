@@ -11,7 +11,6 @@ import {
 } from '../../actions/DashboardActions';
 import { FunnelPart } from '../../components/organisms/FunnelPart';
 import { TablePart } from '../../components/organisms/TablePart';
-import { Icon } from '../../components/atoms/Icon';
 
 class Dashboard extends React.Component {
   componentDidMount() {
@@ -33,7 +32,6 @@ class Dashboard extends React.Component {
         <div className={style.cards}>
           <Cards cards={cards} />
         </div>
-        <Icon />
         <div className={style.funnelTable}>
           <div className={style.funnel}>
             <FunnelPart

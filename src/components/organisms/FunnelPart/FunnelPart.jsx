@@ -1,13 +1,11 @@
 import React from 'react';
-import { Svg } from './../../atoms/Svg';
-import { SvgFigure } from '../../atoms/SvgFigure';
+import { Svg, SvgFigure } from './../../atoms/Svg';
 import PropTypes from 'prop-types';
 import { FunnelVertical } from '../../../lib/charts';
 import { Funnel } from '../../molecules/Funnel';
 import { Spinner } from '../../atoms/Spinner';
 import style from './style.scss';
-import { Subtitle, Title } from '../../atoms/Text';
-import { Text } from '../../atoms/Text';
+import { Subtitle, Title, Text } from '../../atoms/Text';
 import { Radio } from '../../atoms/Radio';
 
 export class FunnelPart extends React.Component {

@@ -13,7 +13,6 @@ $btn-border-radius: 2px;
   &_type {
     &_empty {
       &:hover {
-        // border : none;
         background: $btn-color;
         color: #fff !important;
       }

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { SvgFigure } from '../../atoms/SvgFigure';
+import { SvgFigure } from '../../atoms/Svg';
 
 export class Gradient extends React.Component {
   render() {
