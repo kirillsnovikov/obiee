@@ -1,0 +1,36 @@
+body {
+  background: #eeebeb;
+}
+
+%panel {
+  background: #ffffff;
+  box-shadow: 0px 2px 10px rgba(73, 105, 194, 0.1);
+  border-radius: 8px;
+}
+
+.pipeList {
+  padding: 1em;
+  display: grid;
+  grid-template-areas:
+    'header header'
+    'table chart';
+  grid-template-columns: 1fr 300px;
+  grid-template-rows: auto 1fr;
+  grid-gap: 10px;
+}
+
+.header {
+  grid-area: header;
+}
+
+.table {
+  grid-area: table;
+  @extend %panel;
+}
+
+.chart {
+  grid-area: chart;
+  @extend %panel;
+  display: flex;
+  justify-content: center;
+}

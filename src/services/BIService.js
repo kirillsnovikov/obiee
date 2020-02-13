@@ -138,6 +138,37 @@ class BIService {
     ];
     return table;
   };
+
+  getPipeListHeader = () => {
+    return {
+      title: 'RN03 Список открытых сделок в Pipe',
+      values: [
+        {
+          title: 'Отчетный период',
+          labels: [
+            { label: 'Год', value: '2019' },
+            { label: 'Квартал', value: '4' },
+            { label: 'Месяц', value: 'апрель' }
+          ]
+        },
+        {
+          title: 'Организационная структура',
+          labels: [
+            { label: 'УД', value: 'не выбрано' },
+            { label: 'Филиал', value: 'не выбрано' },
+            { label: 'Региональный офис', value: 'не выбрано' },
+            { label: 'ТП', value: 'не выбрано' },
+            { label: 'Отдел', value: 'не выбрано' },
+            { label: 'Сотудник', value: 'не выбрано' }
+          ]
+        },
+        {
+          title: 'Продукт',
+          labels: [{ label: 'Продукт', value: 'не выбрано' }]
+        }
+      ]
+    };
+  };
 }
 
 export default new BIService();

@@ -4,11 +4,13 @@ import { userReducer } from './user';
 import { cardsReducer } from './cards';
 import { funnelReducer } from './funnel';
 import { tableReducer } from './table';
+import { headerReducer } from './header';
 
 export const rootReducer = combineReducers({
   page: pageReducer,
   user: userReducer,
   cards: cardsReducer,
   funnel: funnelReducer,
-  table: tableReducer
+  table: tableReducer,
+  header: headerReducer
 });

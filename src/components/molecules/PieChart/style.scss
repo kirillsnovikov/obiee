@@ -1,3 +1,30 @@
 .svg {
-  // transform: rotate(90deg);
+}
+
+.circle {
+  stroke-dasharray: 0, 0, 0, 314.15;
+  stroke-dashoffset: 78.53;
+  animation: circle1 2s 1 ease-in-out;
+}
+.circle2 {
+  stroke-dasharray: 0, 0, 0, 314.15;
+  stroke-dashoffset: 78.53;
+  animation: circle2 2s 1 ease-in-out;
+  &:hover {
+    fill: '#f2c';
+  }
+}
+
+@keyframes circle1 {
+  50%,
+  100% {
+    stroke-dasharray: 0, 0, 20, 294;
+  }
+}
+
+@keyframes circle2 {
+  50%,
+  100% {
+    stroke-dasharray: 0, 20, 30, 264;
+  }
 }
