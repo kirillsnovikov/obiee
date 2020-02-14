@@ -9,7 +9,7 @@ const initialState = {
     title: '',
     values: []
   },
-  loading: true,
+  loading: false,
   error: null
 };
 

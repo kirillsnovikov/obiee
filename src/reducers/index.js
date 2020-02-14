@@ -5,6 +5,7 @@ import { cardsReducer } from './cards';
 import { funnelReducer } from './funnel';
 import { tableReducer } from './table';
 import { headerReducer } from './header';
+import { pipeListChartReducer } from './pipeListChart';
 
 export const rootReducer = combineReducers({
   page: pageReducer,
@@ -12,5 +13,6 @@ export const rootReducer = combineReducers({
   cards: cardsReducer,
   funnel: funnelReducer,
   table: tableReducer,
-  header: headerReducer
+  header: headerReducer,
+  pipeListChart: pipeListChartReducer
 });

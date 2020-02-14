@@ -1,19 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import style from './style.scss';
-import { PieChart } from '../../components/molecules/PieChart';
-import { getPipeListHeader } from '../../actions/PipeListActions';
+import {
+  getPipeListHeader,
+  getPipeListChart
+} from '../../actions/PipeListActions';
 import { PipeListHeader } from '../../components/molecules/PipeListHeader';
+import { PipeListChart } from '../../components/organisms/PipeListChart';
 
 class PipeList extends React.Component {
   componentDidMount() {
-    const { getPipeListHeader } = this.props;
+    const { getPipeListHeader, getPipeListChart } = this.props;
     getPipeListHeader();
+    getPipeListChart();
   }
   render() {
-    const data = [100, 500, 250, 400, 700, 50, 220, 340, 300];
-    const size = 230;
-    const { header } = this.props;
+    const { header, pipeListChart, getPipeListChart } = this.props;
     return (
       <div className={style.pipeList}>
         <div className={style.header}>
@@ -24,10 +26,10 @@ class PipeList extends React.Component {
           <div className={style.table__body}></div>
         </div>
         <div className={style.chart}>
-          <div className={style.chart__header}></div>
-          <div className={style.chart__body}>
-            <PieChart data={data} size={size} />
-          </div>
+          <PipeListChart
+            data={pipeListChart}
+            getPipeListChart={getPipeListChart}
+          />
         </div>
       </div>
     );
@@ -36,13 +38,15 @@ class PipeList extends React.Component {
 
 const mapStateToProps = store => {
   return {
-    header: store.header
+    header: store.header,
+    pipeListChart: store.pipeListChart
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getPipeListHeader: () => dispatch(getPipeListHeader())
+    getPipeListHeader: () => dispatch(getPipeListHeader()),
+    getPipeListChart: () => dispatch(getPipeListChart())
   };
 };
 

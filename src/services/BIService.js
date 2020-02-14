@@ -169,6 +169,37 @@ class BIService {
       ]
     };
   };
+
+  getPipeListChart = () => {
+    return {
+      title: 'Факт, млн.руб',
+      type: 'vertical',
+      pie: [
+        {
+          title: {
+            label: 'Продукт',
+            value: 'ВТБ Страхование'
+          },
+          data: {
+            label: 'ddd',
+            value: random(0, 300)
+          },
+          color: `rgb(${random(0, 255)}, ${random(0, 255)}, ${random(0, 255)})`
+        },
+        {
+          title: {
+            label: 'Продукт',
+            value: 'ВТБ Страхование'
+          },
+          data: {
+            label: 'ddd',
+            value: random(0, 300)
+          },
+          color: `rgb(${random(0, 255)}, ${random(0, 255)}, ${random(0, 255)})`
+        }
+      ]
+    };
+  };
 }
 
 export default new BIService();

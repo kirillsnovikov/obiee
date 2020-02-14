@@ -12,7 +12,7 @@
     border-radius: 8px;
     padding: 20px 30px;
     box-sizing: border-box;
-    height: 100%;
+    min-height: 246px;
     @extend %flex-column;
   }
 }
@@ -22,20 +22,19 @@
 }
 .bodyContent {
   @extend %flex-column;
+  justify-content: space-between;
+  flex: 1;
 }
 
 .labels {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .listItem {
   @extend %flex-column;
-  margin-bottom: 1em;
   &__title {
     margin-bottom: 0.25em;
-  }
-  &:last-child {
-    margin-bottom: 0;
   }
 }
 

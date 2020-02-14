@@ -1,0 +1,22 @@
+.chart {
+  display: flex;
+  flex-direction: column;
+  width: 230px;
+  min-height: 230px;
+}
+
+.body {
+}
+
+.pie {
+  display: flex;
+  &__chart {
+  }
+  &_type {
+    &_vertical {
+      flex-direction: column;
+    }
+    &_horizontal {
+    }
+  }
+}

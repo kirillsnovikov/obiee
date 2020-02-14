@@ -5,20 +5,24 @@ import { Text, Subtitle } from '../../atoms/Text';
 import { Spinner } from '../../atoms/Spinner';
 
 export const PipeListHeader = ({ data }) => {
-  const { header, loading, error } = data;
+  const { header, loading } = data;
   const { title, values } = header;
-  return loading ? (
-    <Spinner />
-  ) : (
+  return (
     <div className={style.header}>
       <div className={style.header__back}>назад</div>
       <div className={style.header__body}>
-        <div className={style.bodyTitle}>
-          <Subtitle mod={{ type: 'bold' }}>{title}</Subtitle>
-        </div>
-        <div className={style.bodyContent}>
-          <GroupList values={values} />
-        </div>
+        {loading ? (
+          <Spinner />
+        ) : (
+          <React.Fragment>
+            <div className={style.bodyTitle}>
+              <Subtitle mod={{ type: 'bold' }}>{title}</Subtitle>
+            </div>
+            <div className={style.bodyContent}>
+              <GroupList values={values} />
+            </div>
+          </React.Fragment>
+        )}
       </div>
     </div>
   );
