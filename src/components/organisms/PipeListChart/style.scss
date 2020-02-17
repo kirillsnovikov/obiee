@@ -7,16 +7,3 @@
 
 .body {
 }
-
-.pie {
-  display: flex;
-  &__chart {
-  }
-  &_type {
-    &_vertical {
-      flex-direction: column;
-    }
-    &_horizontal {
-    }
-  }
-}

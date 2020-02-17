@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export const Icon = ({ icon, size = 18 }) => {
-  console.log(size);
   const { viewBox, id } = icon;
   return (
     <svg viewBox={viewBox} width={size} height={size}>

@@ -7,10 +7,9 @@ import { IconActionPanel } from '../../molecules/IconActionPanel';
 import refresh from '../../../assets/icons/mdi-refresh.svg';
 import print from '../../../assets/icons/mdi-print.svg';
 import export1 from '../../../assets/icons/application-export1.svg';
-import { cn } from '@bem-react/classname';
 
 export const PipeListChart = ({ data, getPipeListChart }) => {
-  const { pie, loading, type } = data;
+  const { loading } = data;
   const actions = [
     {
       icon: refresh,
@@ -25,32 +24,13 @@ export const PipeListChart = ({ data, getPipeListChart }) => {
       action: getPipeListChart
     }
   ];
-  const block = cn('pie');
-  const chartClassName = block({
-    type: type ? type : 'vertical'
-  })
-    .split(' ')
-    .map(name => style[name])
-    .join(' ');
-  console.log(chartClassName);
+
   return (
     <div className={style.chart}>
       <div className={style.header}>
         <IconActionPanel actions={actions} />
       </div>
-      {loading ? (
-        <Spinner />
-      ) : (
-        <div className={chartClassName}>
-          <div className={style.pie__chart}>
-            <div className={style.pie__body}>
-              <PieChart data={pie} size={230} />
-            </div>
-            <div className={style.pie__title}>titiitit</div>
-          </div>
-          <div className={style.pie__labels}></div>
-        </div>
-      )}
+      {loading ? <Spinner /> : <PieChart data={data} size={230} />}
     </div>
   );
 };

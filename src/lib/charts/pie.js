@@ -6,7 +6,8 @@ export class Pie {
   opts = {
     stroke: 'rgb(255, 255, 255)',
     strokeWidth: '2',
-    strokeLinejoin: 'round'
+    strokeLinejoin: 'round',
+    point: 7
   };
 
   get paths() {
@@ -52,7 +53,8 @@ export class Pie {
           stroke,
           strokeWidth,
           strokeLinejoin
-        }
+        },
+        data: item
       };
       result.push(attrs);
     });

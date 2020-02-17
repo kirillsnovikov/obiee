@@ -178,10 +178,10 @@ class BIService {
         {
           title: {
             label: 'Продукт',
-            value: 'ВТБ Страхование'
+            value: 'ВТБ Страхование жизни/Согаз'
           },
           data: {
-            label: 'ddd',
+            label: 'сумма экв.руб.',
             value: random(0, 300)
           },
           color: `rgb(${random(0, 255)}, ${random(0, 255)}, ${random(0, 255)})`
@@ -189,10 +189,10 @@ class BIService {
         {
           title: {
             label: 'Продукт',
-            value: 'ВТБ Страхование'
+            value: 'Брокерское обслуживание (ВТБ капитал Брокер)'
           },
           data: {
-            label: 'ddd',
+            label: 'сумма экв.руб.',
             value: random(0, 300)
           },
           color: `rgb(${random(0, 255)}, ${random(0, 255)}, ${random(0, 255)})`
