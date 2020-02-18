@@ -1,0 +1,12 @@
+.table {
+  display: flex;
+  flex-direction: column;
+  padding: 25px 20px;
+  height: 100%;
+  &__header {
+    margin-bottom: 1em;
+  }
+  &__body {
+    flex: 1;
+  }
+}

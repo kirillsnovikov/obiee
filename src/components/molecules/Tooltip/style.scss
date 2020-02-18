@@ -1,0 +1,13 @@
+.tip {
+  display: block;
+  position: fixed;
+  opacity: 0;
+  top: -9999px;
+  left: -9999px;
+  z-index: -9999;
+  transition: opacity 0.3s;
+  &_visible {
+    opacity: 1;
+    z-index: 1000;
+  }
+}

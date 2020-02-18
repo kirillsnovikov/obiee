@@ -4,8 +4,7 @@ import { Text } from '../../atoms/Text';
 import style from './style.scss';
 import { cn } from '@bem-react/classname';
 
-export const Table = props => {
-  const { columns, data } = props;
+export const Table = ({ columns, data }) => {
   const block = cn('row', 'item');
   const header = columns.map((column, k) => (
     <div

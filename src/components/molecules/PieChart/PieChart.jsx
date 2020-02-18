@@ -5,8 +5,8 @@ import { Pie } from '../../../lib/charts';
 import { Svg, SvgFigure } from '../../atoms/Svg';
 import { Text } from '../../atoms/Text';
 import { cn } from '@bem-react/classname';
-import withTooltip from '../../../hoc/withTooltip';
-import { Tooltip } from '../../molecules/Tooltip';
+import Tooltip from '../Tooltip';
+import Portal from '../../../hoc/Portal';
 
 export const PieChart = ({ data, size }) => {
   const { pie, title, type } = data;
@@ -22,12 +22,6 @@ export const PieChart = ({ data, size }) => {
     .split(' ')
     .map(name => style[name])
     .join(' ');
-
-  const tooltips = paths.map((path, i) => {
-    let { data } = path;
-    let tooltipId = `${i}_pie-tooltip`;
-    return <Tooltip id={tooltipId} tooltip={data} key={data.color} />;
-  });
   return (
     <div className={chartClassName}>
       <div className={style.pie__chart}>
@@ -61,12 +55,19 @@ export const PieChart = ({ data, size }) => {
             <g clipPath={`url(#pie-chart)`}>
               {paths.map((path, i) => {
                 console.log(path);
-                let { slice } = path;
+                let { slice, data } = path;
                 let tooltipId = `${i}_pie-tooltip`;
                 return (
-                  <g data-for={tooltipId} key={slice.fill}>
-                    <SvgFigure figure={'path'} attrs={slice} />
-                  </g>
+                  <React.Fragment key={slice.fill}>
+                    <g data-tip data-for={tooltipId}>
+                      <SvgFigure figure={'path'} attrs={slice} />
+                    </g>
+                    <Portal>
+                      <Tooltip tipId={tooltipId}>
+                        <PieTooltip tooltip={data} />
+                      </Tooltip>
+                    </Portal>
+                  </React.Fragment>
                 );
               })}
               <SvgFigure
@@ -109,34 +110,33 @@ export const PieChart = ({ data, size }) => {
           );
         })}
       </div>
-      {tooltips}
     </div>
   );
 };
 
 const PieTooltip = ({ tooltip }) => {
   const { title, data } = tooltip;
-  // console.log(tooltip, 'TOOLTIPpropsprop');
   return (
     <div className={style.pieTooltip}>
       <div className={style.pieTooltip__item}>
-        <div className={style.pieTooltip__label}>{title.label}</div>
-        <div className={style.pieTooltip__value}>{title.value}</div>
+        <div className={style.pieTooltip__label}>
+          <Text>{title.label}</Text>
+        </div>
+        <div className={style.pieTooltip__value}>
+          <Text mod={{ type: 'bold' }}>{title.value}</Text>
+        </div>
       </div>
       <div className={style.pieTooltip__item}>
-        <div className={style.pieTooltip__label}>{data.label}</div>
-        <div className={style.pieTooltip__value}>{data.value}</div>
+        <div className={style.pieTooltip__label}>
+          <Text>{data.label}</Text>
+        </div>
+        <div className={style.pieTooltip__value}>
+          <Text mod={{ type: 'bold' }}>{data.value}</Text>
+        </div>
       </div>
     </div>
   );
 };
-
-const Slice = ({ wrapped }) => {
-  console.log(wrapped, 'SLICEpropsprop');
-  return <SvgFigure {...wrapped} />;
-};
-
-const SliceWithTooltip = withTooltip(Slice, PieTooltip);
 
 PieChart.propTypes = {
   data: PropTypes.object.isRequired,

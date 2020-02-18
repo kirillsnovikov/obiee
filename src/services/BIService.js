@@ -1,4 +1,4 @@
-import { random } from '../helpers/helper';
+import { random, randomRGB } from '../helpers/helper';
 import { ColumnData } from '../helpers/table';
 
 class BIService {
@@ -170,6 +170,77 @@ class BIService {
     };
   };
 
+  getPipeListTable = () => {
+    let table = {};
+    table.data = [
+      {
+        stage: 'Создание',
+        dealsCntInStage: random(30, 400),
+        totalInMlns: random(1000, 200000) / 1000,
+        chance: `${random(0, 100)},0%`,
+        totalWithChanceInMlns: random(10000, 2000000) / 10000
+      },
+      {
+        stage: 'Создание',
+        dealsCntInStage: random(30, 400),
+        totalInMlns: random(1000, 200000) / 1000,
+        chance: `${random(0, 100)},0%`,
+        totalWithChanceInMlns: random(10000, 2000000) / 10000
+      },
+      {
+        stage: 'Оформление',
+        dealsCntInStage: random(30, 400),
+        totalInMlns: random(1000, 200000) / 1000,
+        chance: `${random(0, 100)},0%`,
+        totalWithChanceInMlns: random(10000, 2000000) / 10000
+      },
+      {
+        stage: 'Оформление',
+        dealsCntInStage: random(30, 400),
+        totalInMlns: random(1000, 200000) / 1000,
+        chance: `${random(0, 100)},0%`,
+        totalWithChanceInMlns: random(10000, 2000000) / 10000
+      },
+      {
+        stage: 'Итого',
+        dealsCntInStage: random(30, 400),
+        totalInMlns: random(1000, 200000) / 1000,
+        chance: `${random(0, 100)},0%`,
+        totalWithChanceInMlns: random(10000, 2000000) / 10000
+      }
+    ];
+
+    table.columns = [
+      new ColumnData({
+        Name: 'stage',
+        Display: 'Этап',
+        Type: 'label',
+        Width: 112
+      }),
+      new ColumnData({
+        Name: 'dealsCntInStage',
+        Display: 'Кол-во сделок на этапе',
+        Width: 126
+      }),
+      new ColumnData({
+        Name: 'totalInMlns',
+        Display: 'Сумма, млн.',
+        Width: 121
+      }),
+      new ColumnData({
+        Name: 'chance',
+        Display: 'Вероятность, %',
+        Width: 125
+      }),
+      new ColumnData({
+        Name: 'totalWithChanceInMlns',
+        Display: 'Сумма с учетом вероятности, млн.',
+        Width: 165
+      })
+    ];
+    return table;
+  };
+
   getPipeListChart = () => {
     return {
       title: 'Факт, млн.руб',
@@ -184,7 +255,40 @@ class BIService {
             label: 'сумма экв.руб.',
             value: random(0, 300)
           },
-          color: `rgb(${random(0, 255)}, ${random(0, 255)}, ${random(0, 255)})`
+          color: randomRGB()
+        },
+        {
+          title: {
+            label: 'Продукт',
+            value: 'ВТБ Страхование жизни/Согаз'
+          },
+          data: {
+            label: 'сумма экв.руб.',
+            value: random(0, 300)
+          },
+          color: randomRGB()
+        },
+        {
+          title: {
+            label: 'Продукт',
+            value: 'ВТБ Страхование жизни/Согаз'
+          },
+          data: {
+            label: 'сумма экв.руб.',
+            value: random(0, 300)
+          },
+          color: randomRGB()
+        },
+        {
+          title: {
+            label: 'Продукт',
+            value: 'ВТБ Страхование жизни/Согаз'
+          },
+          data: {
+            label: 'сумма экв.руб.',
+            value: random(0, 300)
+          },
+          color: randomRGB()
         },
         {
           title: {
@@ -195,7 +299,7 @@ class BIService {
             label: 'сумма экв.руб.',
             value: random(0, 300)
           },
-          color: `rgb(${random(0, 255)}, ${random(0, 255)}, ${random(0, 255)})`
+          color: randomRGB()
         }
       ]
     };

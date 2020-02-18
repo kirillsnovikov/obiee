@@ -3,13 +3,20 @@ import PropTypes from 'prop-types';
 import style from './style.scss';
 import { Text, Subtitle } from '../../atoms/Text';
 import { Spinner } from '../../atoms/Spinner';
+import { Icon } from '../../atoms/Icon';
+import arrowBack from '../../../assets/icons/arrow-back.svg';
 
 export const PipeListHeader = ({ data }) => {
   const { header, loading } = data;
   const { title, values } = header;
   return (
     <div className={style.header}>
-      <div className={style.header__back}>назад</div>
+      <div className={style.header__back}>
+        <div className={style.header__backIcon}>
+          <Icon icon={arrowBack} size={16} />
+        </div>
+        <Text mod={{ size: 'l' }}>Назад к Pipeline</Text>
+      </div>
       <div className={style.header__body}>
         {loading ? (
           <Spinner />

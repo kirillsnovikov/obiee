@@ -35,3 +35,31 @@ export function random(min, max) {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
 }
+
+export function randomRGB() {
+  return `rgb(${random(120, 255)}, ${random(120, 255)}, ${random(120, 255)})`;
+}
+
+export function throttle(f, t) {
+  return function(args) {
+    let previousCall = this.lastCall;
+    this.lastCall = Date.now();
+    if (
+      previousCall === undefined || // function is being called for the first time
+      this.lastCall - previousCall > t // throttle time has elapsed
+    ) {
+      f(args);
+    }
+  };
+}
+
+export function debounce(f, t) {
+  return function(args) {
+    let previousCall = this.lastCall;
+    this.lastCall = Date.now();
+    if (previousCall && this.lastCall - previousCall <= t) {
+      clearTimeout(this.lastCallTimer);
+    }
+    this.lastCallTimer = setTimeout(() => f(args), t);
+  };
+}

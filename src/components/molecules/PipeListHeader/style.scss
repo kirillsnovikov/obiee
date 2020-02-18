@@ -15,6 +15,20 @@
     min-height: 246px;
     @extend %flex-column;
   }
+
+  &__back {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5em;
+    cursor: pointer;
+    &:hover * {
+      color: #001fa7;
+    }
+  }
+  &__backIcon {
+    margin-right: 0.5em;
+    color: #2c87ec;
+  }
 }
 
 .bodyTitle {
