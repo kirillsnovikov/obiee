@@ -5,13 +5,15 @@ import { Text, Subtitle } from '../../atoms/Text';
 import { Spinner } from '../../atoms/Spinner';
 import { Icon } from '../../atoms/Icon';
 import arrowBack from '../../../assets/icons/arrow-back.svg';
+import { getActionFromBI } from '../../../helpers/helper';
 
 export const PipeListHeader = ({ data }) => {
   const { header, loading } = data;
-  const { title, values } = header;
+  const { title, values, actionName } = header;
+  const backAction = () => getActionFromBI(actionName);
   return (
     <div className={style.header}>
-      <div className={style.header__back}>
+      <div className={style.header__back} onClick={backAction}>
         <div className={style.header__backIcon}>
           <Icon icon={arrowBack} size={16} />
         </div>

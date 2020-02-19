@@ -4,19 +4,20 @@ import { Card } from '../../components/molecules/Card';
 import { Spinner } from '../../components/atoms/Spinner';
 import style from './style.scss';
 import {
-  loadCards,
+  getCards,
   getFunnelInThings,
   getFunnelInMlns,
   getTableData
 } from '../../actions/DashboardActions';
 import { FunnelPart } from '../../components/organisms/FunnelPart';
 import { TablePart } from '../../components/organisms/TablePart';
+import { getActionFromBI } from '../../helpers/helper';
 
 class Dashboard extends React.Component {
   componentDidMount() {
-    const { loadCards, getFunnelInMlns, getTableData } = this.props;
+    const { getCards, getFunnelInMlns, getTableData } = this.props;
     getFunnelInMlns();
-    loadCards();
+    getCards();
     getTableData();
   }
   render() {
@@ -30,7 +31,7 @@ class Dashboard extends React.Component {
     return (
       <section className={style.dashboard}>
         <div className={style.cards}>
-          <Cards cards={cards} />
+          <Cards data={cards} />
         </div>
         <div className={style.funnelTable}>
           <div className={style.funnel}>
@@ -49,13 +50,24 @@ class Dashboard extends React.Component {
   }
 }
 
-const Cards = props => {
-  return props.cards.loading ? (
+const Cards = ({ data }) => {
+  const { cards, loading } = data;
+  return loading ? (
     <Spinner />
   ) : (
-    props.cards.cards.map((card, i) => (
-      <Card className={style.cards__card} data={card} key={card.id + i} />
-    ))
+    cards.map((card, i) => {
+      let action = () => {
+        getActionFromBI(card.actionName);
+      };
+      return (
+        <Card
+          className={style.cards__card}
+          data={card}
+          key={card.id + i}
+          action={action}
+        />
+      );
+    })
   );
 };
 
@@ -69,7 +81,7 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadCards: () => dispatch(loadCards()),
+    getCards: () => dispatch(getCards()),
     getFunnelInThings: () => dispatch(getFunnelInThings()),
     getFunnelInMlns: () => dispatch(getFunnelInMlns()),
     getTableData: () => dispatch(getTableData())

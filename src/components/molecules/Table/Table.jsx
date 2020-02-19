@@ -4,8 +4,17 @@ import { Text } from '../../atoms/Text';
 import style from './style.scss';
 import { cn } from '@bem-react/classname';
 
-export const Table = ({ columns, data }) => {
-  const block = cn('row', 'item');
+export const Table = ({ columns, data, config }) => {
+  let rowItemCn = cn('row', 'item');
+  let rowCn = cn('table__row');
+  rowCn = rowCn()
+    .split(' ')
+    .map(name => style[name])
+    .join(' ');
+  rowItemCn = rowItemCn(config.row)
+    .split(' ')
+    .map(name => style[name])
+    .join(' ');
   const header = columns.map((column, k) => (
     <div
       className={style['table__header-item']}
@@ -16,18 +25,18 @@ export const Table = ({ columns, data }) => {
     </div>
   ));
   const rows = data.map((row, i) => (
-    <div className={style.table__row} key={i}>
+    <div className={rowCn} key={i}>
       {columns.map((column, k) => {
-        const className = (column.Type === 'label'
-          ? block({ type: 'label' })
-          : block()
-        )
-          .split(' ')
-          .map(name => style[name])
-          .join(' ');
+        // const className = (column.Type === 'label'
+        //   ? rowItemCn({ type: 'label' })
+        //   : rowItemCn()
+        // )
+        //   .split(' ')
+        //   .map(name => style[name])
+        //   .join(' ');
         return (
           <div
-            className={className}
+            className={rowItemCn}
             key={`${column.Name}_${k}`}
             style={{ flex: `${column.Width}px` }}
           >
@@ -49,5 +58,6 @@ export const Table = ({ columns, data }) => {
 
 Table.propTypes = {
   columns: PropTypes.array.isRequired,
+  config: PropTypes.object,
   data: PropTypes.array.isRequired
 };

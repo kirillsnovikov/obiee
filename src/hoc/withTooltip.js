@@ -23,7 +23,6 @@ const withTooltip = (Wrapped, Tooltip) => {
       const closeTooltip = e => {
         this.setState(() => ({ isShow: false }));
       };
-      console.log(this.state, 'sssss');
       return (
         <React.Fragment>
           <g onMouseEnter={showTooltip} onMouseLeave={closeTooltip}>
@@ -57,7 +56,6 @@ class TooltipWrapper extends React.Component {
     tooltipRoot.removeChild(this.el);
   }
   render() {
-    console.log(this.props, 'asfsfd');
     return ReactDOM.createPortal(this.props.children, this.el);
   }
 }

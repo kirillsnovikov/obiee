@@ -72,6 +72,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
+    "build-dashboard": "COPY src\\dashboard.js src\\index.js && node scripts/build.js",
+    "build-pipelist": "COPY src\\pipelist.js src\\index.js scripts/build.js",
     "test": "node scripts/test.js"
   },
   "eslintConfig": {

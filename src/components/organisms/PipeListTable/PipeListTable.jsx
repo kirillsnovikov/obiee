@@ -34,7 +34,11 @@ export const PipeListTable = ({ data, getPipeListTable }) => {
         <Spinner />
       ) : (
         <div className={style.table__body}>
-          <Table columns={table.columns} data={table.data} />
+          <Table
+            columns={table.columns}
+            data={table.data}
+            config={table.config}
+          />
         </div>
       )}
     </div>

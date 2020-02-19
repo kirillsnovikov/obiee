@@ -2,6 +2,30 @@ import { random, randomRGB } from '../helpers/helper';
 import { ColumnData } from '../helpers/table';
 
 class BIService {
+  getCards = () => {
+    let res = [];
+    let titles = [
+      'Прирост портфеля под управлением',
+      'Прирост портфеля активных клиентов',
+      'Комиссионный доход'
+    ];
+    let actionNames = ['moredetails', 'moredetails', 'moredetails'];
+    for (let i = 0; i < 3; i++) {
+      let card = {
+        id: i + 1,
+        actionName: actionNames[i],
+        title: titles[i],
+        pct: random(0, 100),
+        plan: random(40, 60),
+        fact: random(70, 100),
+        pipe: random(5, 30),
+        confirm: random(5, 20)
+      };
+      res.push(card);
+    }
+    return res;
+  };
+
   getFunnelInThings = () => {
     const names = ['Создание', 'Оформление', 'Продажа'];
     const data = {
@@ -70,6 +94,11 @@ class BIService {
 
   getTableData = () => {
     let table = {};
+    table.config = {
+      row: {
+        nowrap: true
+      }
+    };
     table.data = [
       {
         stage: 'Создание',
@@ -142,6 +171,7 @@ class BIService {
   getPipeListHeader = () => {
     return {
       title: 'RN03 Список открытых сделок в Pipe',
+      actionName: 'backToPipeList',
       values: [
         {
           title: 'Отчетный период',
@@ -172,70 +202,145 @@ class BIService {
 
   getPipeListTable = () => {
     let table = {};
+    table.config = {
+      row: {
+        nowrap: false
+      }
+    };
     table.data = [
       {
+        tp: 'ДО "Алтайский"',
+        employee: 'Кузнецов Алексей Петрович',
         stage: 'Создание',
-        dealsCntInStage: random(30, 400),
-        totalInMlns: random(1000, 200000) / 1000,
-        chance: `${random(0, 100)},0%`,
-        totalWithChanceInMlns: random(10000, 2000000) / 10000
+        clientId: '1-BACUFP',
+        nameOfPotentialClient: 'Пискарев Виктор Петрович',
+        product: 'Пакет услуг Прайм',
+        planingClosingDate: '27.12.2018',
+        totalEquivRbl: '10.00'
       },
       {
+        tp: 'ДО "Тульской" в г.Москва',
+        employee: 'Молянов Владимир Алексеевич',
         stage: 'Создание',
-        dealsCntInStage: random(30, 400),
-        totalInMlns: random(1000, 200000) / 1000,
-        chance: `${random(0, 100)},0%`,
-        totalWithChanceInMlns: random(10000, 2000000) / 10000
+        clientId: '1-BACUFP',
+        nameOfPotentialClient: 'Некулов Олег Игоревич',
+        product: 'ВТБ страхование жизни/согаз',
+        planingClosingDate: '27.12.2018',
+        totalEquivRbl: '10.00'
       },
       {
-        stage: 'Оформление',
-        dealsCntInStage: random(30, 400),
-        totalInMlns: random(1000, 200000) / 1000,
-        chance: `${random(0, 100)},0%`,
-        totalWithChanceInMlns: random(10000, 2000000) / 10000
+        tp: 'ДО "Алтайский"',
+        employee: 'Акулов Геннадий Полякович',
+        stage: 'Создание',
+        clientId: '1-BACUFP',
+        nameOfPotentialClient: 'Петров Константин Сергеевич',
+        product: 'Пакет услуг Прайм',
+        planingClosingDate: '27.12.2018',
+        totalEquivRbl: '10.00'
       },
       {
-        stage: 'Оформление',
-        dealsCntInStage: random(30, 400),
-        totalInMlns: random(1000, 200000) / 1000,
-        chance: `${random(0, 100)},0%`,
-        totalWithChanceInMlns: random(10000, 2000000) / 10000
+        tp: 'ДО "Тульской" в г.Москва',
+        employee: 'Акулов Геннадий Полякович',
+        stage: 'Создание',
+        clientId: '1-BACUFP',
+        nameOfPotentialClient: 'Петров Константин Сергеевич',
+        product: 'ВТБ страхование жизни/согаз',
+        planingClosingDate: '27.12.2018',
+        totalEquivRbl: '10.00'
       },
       {
-        stage: 'Итого',
-        dealsCntInStage: random(30, 400),
-        totalInMlns: random(1000, 200000) / 1000,
-        chance: `${random(0, 100)},0%`,
-        totalWithChanceInMlns: random(10000, 2000000) / 10000
+        tp: 'ДО "Алтайский"',
+        employee: 'Акулов Геннадий Полякович',
+        stage: 'Создание',
+        clientId: '1-BACUFP',
+        nameOfPotentialClient: 'Петров Константин Сергеевич',
+        product: 'Пакет услуг Прайм',
+        planingClosingDate: '27.12.2018',
+        totalEquivRbl: '10.00'
+      },
+      {
+        tp: 'ДО "Тульской" в г.Москва',
+        employee: 'Акулов Геннадий Полякович',
+        stage: 'Создание',
+        clientId: '1-BACUFP',
+        nameOfPotentialClient: 'Петров Константин Сергеевич',
+        product: 'ВТБ страхование жизни/согаз',
+        planingClosingDate: '27.12.2018',
+        totalEquivRbl: '10.00'
+      },
+      {
+        tp: 'ДО "Алтайский"',
+        employee: 'Акулов Геннадий Полякович',
+        stage: 'Создание',
+        clientId: '1-BACUFP',
+        nameOfPotentialClient: 'Петров Константин Сергеевич',
+        product: 'Пакет услуг Прайм',
+        planingClosingDate: '27.12.2018',
+        totalEquivRbl: '10.00'
+      },
+      {
+        tp: 'ДО "Тульской" в г.Москва',
+        employee: 'Акулов Геннадий Полякович',
+        stage: 'Создание',
+        clientId: '1-BACUFP',
+        nameOfPotentialClient: 'Петров Константин Сергеевич',
+        product: 'ВТБ страхование жизни/согаз',
+        planingClosingDate: '27.12.2018',
+        totalEquivRbl: '10.00'
+      },
+      {
+        tp: 'ДО "Алтайский"',
+        employee: 'Акулов Геннадий Полякович',
+        stage: 'Создание',
+        clientId: '1-BACUFP',
+        nameOfPotentialClient: 'Петров Константин Сергеевич',
+        product: 'Пакет услуг Прайм',
+        planingClosingDate: '27.12.2018',
+        totalEquivRbl: '10.00'
       }
     ];
 
     table.columns = [
       new ColumnData({
-        Name: 'stage',
-        Display: 'Этап',
+        Name: 'tp',
+        Display: 'ТП',
         Type: 'label',
-        Width: 112
+        Width: 70
       }),
       new ColumnData({
-        Name: 'dealsCntInStage',
-        Display: 'Кол-во сделок на этапе',
+        Name: 'employee',
+        Display: 'Сотрудник',
         Width: 126
       }),
       new ColumnData({
-        Name: 'totalInMlns',
-        Display: 'Сумма, млн.',
+        Name: 'stage',
+        Display: 'Этап',
+        Width: 70
+      }),
+      new ColumnData({
+        Name: 'clientId',
+        Display: 'ID клиента',
+        Width: 80
+      }),
+      new ColumnData({
+        Name: 'nameOfPotentialClient',
+        Display: 'ФИО потенциального клиента',
+        Width: 126
+      }),
+      new ColumnData({
+        Name: 'product',
+        Display: 'Продукт',
         Width: 121
       }),
       new ColumnData({
-        Name: 'chance',
-        Display: 'Вероятность, %',
-        Width: 125
+        Name: 'planingClosingDate',
+        Display: 'Дата закрытия плановая',
+        Width: 100
       }),
       new ColumnData({
-        Name: 'totalWithChanceInMlns',
-        Display: 'Сумма с учетом вероятности, млн.',
-        Width: 165
+        Name: 'totalEquivRbl',
+        Display: 'Сумма экв.,руб.',
+        Width: 50
       })
     ];
     return table;

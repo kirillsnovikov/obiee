@@ -13,7 +13,11 @@ export class TablePart extends React.Component {
       <div className={style['table-part']}>
         <div className={style.top}></div>
         <div className={style.body}>
-          <Table columns={table.table.columns} data={table.table.data} />
+          <Table
+            columns={table.table.columns}
+            data={table.table.data}
+            config={table.table.config}
+          />
         </div>
       </div>
     );

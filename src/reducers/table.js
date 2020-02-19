@@ -8,7 +8,8 @@ const initialState = {
   loading: false,
   table: {
     columns: [],
-    data: []
+    data: [],
+    config: {}
   },
   error: null
 };

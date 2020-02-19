@@ -54,7 +54,6 @@ export const PieChart = ({ data, size }) => {
             </g>
             <g clipPath={`url(#pie-chart)`}>
               {paths.map((path, i) => {
-                console.log(path);
                 let { slice, data } = path;
                 let tooltipId = `${i}_pie-tooltip`;
                 return (

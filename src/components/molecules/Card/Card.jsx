@@ -8,7 +8,7 @@ import style from './style.scss';
 
 export class Card extends React.Component {
   render() {
-    const { data, className } = this.props;
+    const { data, className, action } = this.props;
     const stackConfig = {
       series: [
         {
@@ -37,7 +37,7 @@ export class Card extends React.Component {
             <Subtitle mod={{ type: 'bold' }}>{data.title}</Subtitle>
           </span>
           <div className={style.button}>
-            <Button type={'empty'} link={'#'}>
+            <Button type={'empty'} action={action}>
               Подробнее
             </Button>
           </div>
@@ -55,5 +55,6 @@ export class Card extends React.Component {
 
 Card.propTypes = {
   data: PropTypes.object.isRequired,
-  className: PropTypes.string
+  className: PropTypes.string,
+  action: PropTypes.func
 };

@@ -7,6 +7,7 @@ import {
 const initialState = {
   header: {
     title: '',
+    actionName: '',
     values: []
   },
   loading: false,

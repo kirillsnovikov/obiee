@@ -63,3 +63,15 @@ export function debounce(f, t) {
     this.lastCallTimer = setTimeout(() => f(args), t);
   };
 }
+
+export function getActionFromBI(name) {
+  let el = Object.values(document.querySelectorAll('a')).find(
+    el => el.text === name
+  );
+  if (el) {
+    el.style.display = 'none';
+    el.click();
+  } else {
+    console.warn(`Action el(${name}): ${el}`);
+  }
+}

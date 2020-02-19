@@ -19,6 +19,7 @@ $--header-background: $--grey-color;
     background: $--header-background;
     display: flex;
     height: 100%;
+    border-bottom: $--table-border;
   }
 
   &__header-item {
@@ -58,9 +59,12 @@ $--header-background: $--grey-color;
 
 .row-item {
   padding: 0.625em 0.5em;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  word-break: break-word;
+  &_nowrap {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   &_type {
     &_label {
       border-right: $--table-border;

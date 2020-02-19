@@ -1,7 +1,7 @@
 import {
-  SET_CARDS_STARTED,
-  SET_CARDS_SUCCESS,
-  SET_CARDS_FIALURE
+  GET_CARDS_STARTED,
+  GET_CARDS_SUCCESS,
+  GET_CARDS_FIALURE
 } from '../actions/DashboardActions';
 
 const initialState = {
@@ -12,17 +12,17 @@ const initialState = {
 
 export function cardsReducer(state = initialState, action) {
   switch (action.type) {
-    case SET_CARDS_STARTED:
+    case GET_CARDS_STARTED:
       return { ...state, loading: true };
 
-    case SET_CARDS_SUCCESS:
+    case GET_CARDS_SUCCESS:
       return {
         ...state,
         loading: false,
         cards: action.payload
       };
 
-    case SET_CARDS_FIALURE:
+    case GET_CARDS_FIALURE:
       return {
         ...state,
         loading: false,
